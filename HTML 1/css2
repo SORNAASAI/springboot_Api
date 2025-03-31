@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>
+            Store
+        </title>
+        <link rel="stylesheet" href="style2.css">
+        </head>
+        <body>
+            <div id="store-header">
+            <h1>My Fashion Store</h1>
+            <nav>
+                <ul type="none">
+                    <li class = "product-category">Men'sFashion</li>
+                    <li class="product-category">Women'sFashion</li>
+                    <li class="product-category">Accessories</li>
+                    </ul>
+                    
+                    </nav>
+                    </div>
+                <main>
+                    <div class="product">
+                        <h2>Stylish T-Shirt</h2>
+                        <p>$24.99</p>
+                    </div>
+                    <div class="special-offer">
+                    <h2>Designer Jeans</h2>
+                    <p>$49.99</p>
+                    </div>
+                </main>
+                    <footer>
+                        &copy;2023 My Fashion Store
+                    </footer>
+</body>
+                    
+
+</html>

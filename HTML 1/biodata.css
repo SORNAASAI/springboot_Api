@@ -1,0 +1,113 @@
+.grid
+{
+    height:1000px;
+    display:grid;
+    grid-template-rows:5fr 15fr 20fr 20fr 20fr 20fr;
+    margin:-8px;
+}
+.name
+{
+background-color: lightgray;
+color:black;
+display:flex;
+
+
+}
+#para
+{
+    color:red;
+    padding-right: 900px
+    ;
+}
+.navi
+{
+    margin:25px;
+    
+    padding-left:800px;
+    
+}
+#home
+{
+    background-color: black;
+    color:white;
+font-size:xx-large;
+padding:50px;
+
+}
+a{
+    text-decoration: none;
+    color:black;
+    padding:5px;
+}
+.d1
+{
+    padding-left: 500px;
+    text-decoration: line-through;
+}
+.d2
+{
+    padding-left: 400px;
+}
+#aboutme
+{
+    background-color: lightgray;
+    padding:20px;
+    padding-left:350px;
+}
+
+#achievements
+{
+    background-color: black;
+    color:white;
+}
+#ac
+{
+    text-align: center;
+}
+.lorem
+{
+    display:grid;
+    grid-template-columns: 35fr 35fr 30fr;
+
+}
+.pro
+{
+    text-align: center;
+
+}
+#data
+{
+    text-align: center;
+}
+
+.cell
+{
+    background-color: white;
+    height:200px;
+    width:200px;
+    color:black;
+    margin:100px;
+}
+#skills
+{
+    background-color: lightgray;
+    
+
+}
+#sk
+{
+    text-align: center;
+}
+.data1
+{
+    display:grid;
+    grid-template-columns: 50% 50%;
+}
+
+#contact
+{
+    background-color: black;
+    color:white;
+    text-align: center;
+    padding:30px;
+}

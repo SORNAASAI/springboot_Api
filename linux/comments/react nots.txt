@@ -1,0 +1,11 @@
+product view
+{'★'.repeat(Math.round(product.rating))}
+ is string The repeat() method creates a new string by repeating the star character (★) a specified number of times, 
+location.state is often used to pass state when navigating between pages or components.
+const { product } = location.state || {}; is a destructuring assignment used in JavaScript to extract the product property from an object.
+location.state || {}: This part is a fallback mechanism. If location.state is undefined or null, it falls back to an empty object ({}). This ensures that the destructuring does not throw an error if location.state is not defined.
+
+A fallback mechanism is a programming technique used to provide a default value or an alternative behavior when the expected condition is not met. It helps to ensure that a program continues to work even if some data is missing, undefined, or invalid. 
+justifyContent: 'center', alignItems: 'center'
+alignItems
+Alignment Along the Cross Axis: This property aligns flex items along the cross axis, which is perpendicular to the main axis.

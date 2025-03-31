@@ -1,0 +1,247 @@
+// src/components/Order.js
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const Order = () => {
+  const [orders, setOrders] = useState([]);
+  const [formData, setFormData] = useState({
+    customer_name: '',
+    order_date: '',
+    items: [],
+    total: 0,
+  });
+  const [item, setItem] = useState({
+    product_id: '',
+    product_name: '',
+    quantity: '',
+    price_per_item: '',
+  });
+
+  // Fetch orders on component mount
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  // Function to fetch orders
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/order');
+      setOrders(response.data);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle item input changes
+  const handleItemChange = (e) => {
+    const { name, value } = e.target;
+    setItem({ ...item, [name]: value });
+  };
+
+  // Add an item to the items array
+  const addItem = () => {
+    if (
+      item.product_id &&
+      item.product_name &&
+      item.quantity &&
+      item.price_per_item
+    ) {
+      setFormData({
+        ...formData,
+        items: [...formData.items, { ...item, quantity: Number(item.quantity), price_per_item: Number(item.price_per_item) }],
+        total: formData.total + Number(item.quantity) * Number(item.price_per_item),
+      });
+      setItem({
+        product_id: '',
+        product_name: '',
+        quantity: '',
+        price_per_item: '',
+      });
+    } else {
+      alert('Please fill in all item fields.');
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.customer_name && formData.order_date && formData.items.length > 0) {
+      const newOrder = {
+        ...formData,
+        order_id: orders.length > 0 ? orders[orders.length - 1].order_id + 1 : 1,
+      };
+      await addOrder(newOrder);
+      setFormData({
+        customer_name: '',
+        order_date: '',
+        items: [],
+        total: 0,
+      });
+    } else {
+      alert('Please fill in all order fields and add at least one item.');
+    }
+  };
+
+  // Function to add a new order
+  const addOrder = async (newOrder) => {
+    try {
+      const response = await axios.post('http://localhost:3001/order', newOrder);
+      setOrders([...orders, response.data]);
+    } catch (error) {
+      console.error('Error adding order:', error);
+    }
+  };
+
+  // Function to delete an order
+  const deleteOrder = async (order_id) => {
+    try {
+      await axios.delete(`http://localhost:3001/order/${order_id}`);
+      setOrders(orders.filter(order => order.order_id !== order_id));
+    } catch (error) {
+      console.error('Error deleting order:', error);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Order Management</h1>
+
+      {/* Add Order Form */}
+      <h2>Add New Order</h2>
+      <form onSubmit={handleSubmit} style={{ marginBottom: '40px' }}>
+        <div>
+          <label>Customer Name: </label>
+          <input
+            type="text"
+            name="customer_name"
+            value={formData.customer_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Order Date: </label>
+          <input
+            type="date"
+            name="order_date"
+            value={formData.order_date}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* Item Details */}
+        <h3>Add Items</h3>
+        <div>
+          <label>Product ID: </label>
+          <input
+            type="number"
+            name="product_id"
+            value={item.product_id}
+            onChange={handleItemChange}
+          />
+        </div>
+        <div>
+          <label>Product Name: </label>
+          <input
+            type="text"
+            name="product_name"
+            value={item.product_name}
+            onChange={handleItemChange}
+          />
+        </div>
+        <div>
+          <label>Quantity: </label>
+          <input
+            type="number"
+            name="quantity"
+            value={item.quantity}
+            onChange={handleItemChange}
+          />
+        </div>
+        <div>
+          <label>Price per Item: </label>
+          <input
+            type="number"
+            step="0.01"
+            name="price_per_item"
+            value={item.price_per_item}
+            onChange={handleItemChange}
+          />
+        </div>
+        <button type="button" onClick={addItem}>
+          Add Item
+        </button>
+
+        {/* Display Added Items */}
+        {formData.items.length > 0 && (
+          <div>
+            <h4>Items:</h4>
+            <ul>
+              {formData.items.map((itm, index) => (
+                <li key={index}>
+                  {itm.product_name} (ID: {itm.product_id}) - Quantity: {itm.quantity} @ ${itm.price_per_item} each
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div>
+          <strong>Total: ${formData.total.toFixed(2)}</strong>
+        </div>
+        <button type="submit">Submit Order</button>
+      </form>
+
+      {/* Display Orders */}
+      <h2>All Orders</h2>
+      {orders.length > 0 ? (
+        <table border="1" cellPadding="10" cellSpacing="0">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Order Date</th>
+              <th>Items</th>
+              <th>Total ($)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.order_id}>
+                <td>{order.order_id}</td>
+                <td>{order.customer_name}</td>
+                <td>{order.order_date}</td>
+                <td>
+                  <ul>
+                    {order.items.map((item, idx) => (
+                      <li key={idx}>
+                        {item.product_name} (ID: {item.product_id}) - Quantity: {item.quantity} @ ${item.price_per_item} each
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td>{order.total.toFixed(2)}</td>
+                <td>
+                  <button onClick={() => deleteOrder(order.order_id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No orders available.</p>
+      )}
+    </div>
+  );
+};
+
+export default Order;

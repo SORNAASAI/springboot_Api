@@ -1,0 +1,36 @@
+https://www.youtube.com/watch?v=ByLOrDhn7B0
+youtube.com/watch?v=EkRuAOsmXm0
+https://www.youtube.com/watch?v=4sc6BhgS_Co
+https://www.youtube.com/watch?v=tEMrD9t85v4
+serch,when we add give the msg,fliter,menu
+
+
+
+{ id: 8, name: 'Strawberry', price: 200, discountPrice: 150, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxfTC-TfIpQfOydWMXeU2CHsJC_ULzcjQL2A&s', discount: '25% OFF' },
+ { id: 5, name: 'Grapes', price: 150, discountPrice: 100, image: 'https://media.istockphoto.com/id/489520104/tr/foto%C4%9Fraf/green-grape-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=665OsfnZNdOjuldPeG8jAt6Gt-2tWKBBfbQXoP6oR-E=', discount: '33% OFF' },
+{
+      id:'c301',
+      name: 'Sugar Palm Fruit',
+      price: 43,
+      discountPrice: 27,
+      image: 'https://media.istockphoto.com/id/1145647664/photo/palmyra-palm-toddy-palm-or-sugar-palm-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=0k_VGqmRrt7u_sW-U3a9ZQbaWmoJBFtwwT32PTeZXk4=',
+      discount: '25% OFF'
+    },
+{ id: 108, name: 'Cabbage', price: 35, discountPrice: 25, image: 'https://img.freepik.com/premium-photo/cabbage-isolated-white-background_881868-1084.jpg', discount: '29% OFF' },
+  { id: 109, name: 'Cauliflower', price: 50, discountPrice: 40, image: 'https://static.vecteezy.com/system/resources/previews/026/512/568/large_2x/cauliflower-isolated-on-white-background-ai-generated-photo.jpg', discount: '20% OFF' },{
+      "name": "Glass Cleaner",
+      "price": 100,
+      "discountPrice": 75,
+      "image": "https://m.media-amazon.com/images/I/51hH19pF8BL.jpg",
+      "discount": "25% OFF",
+      "id": "05a4"
+    },
+    {
+      "name": "Bathroom Cleaner",
+      "price": 120,
+      "discountPrice": 90,
+      "image": "https://www.bigbasket.com/media/uploads/p/l/1208844-2_6-harpic-bathroom-cleaner-liquid-lemon-1-l-toilet-cleaner-bleach-white-shine-500-ml.jpg",
+      "discount": "25% OFF",
+      "id": "59f6"
+    },
+

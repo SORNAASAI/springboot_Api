@@ -1,0 +1,518 @@
+// src/components/Fruits.js
+import React, { useState } from 'react';
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  IconButton,
+} from '@mui/material';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext'; // Import the cart context
+
+const fruitsData = [
+  { name: 'Apple', price: 120, discountPrice: 90, image: 'https://c4.wallpaperflare.com/wallpaper/567/218/528/apples-fruit-cut-leaf-wallpaper-preview.jpg', discount: '25% OFF' },
+  { name: 'Banana', price: 60, discountPrice: 45, image: 'https://i.pinimg.com/736x/d6/2c/6f/d62c6fab8756a07ce13d30059120cc32.jpg', discount: '25% OFF' },
+  { name: 'Orange', price: 80, discountPrice: 60, image: 'https://media.istockphoto.com/id/182463420/photo/tangerine-duo-with-leafs.jpg?s=612x612&w=0&k=20&c=d3JZRAqgqZ5RWyN4ryFteCnmFNbeD9e3TNJkS2IC0vU=', discount: '25% OFF' },
+  { name: 'Mango', price: 100, discountPrice: 75, image: 'https://media.istockphoto.com/id/1417819877/photo/beautiful-delicious-mango-isolated-on-white-table-background.jpg?s=612x612&w=0&k=20&c=Nc7qBj0bnVzg6eUoFUw4YvUc0MFlcvWpxEsyDBBpDFI=', discount: '25% OFF' },
+  { name: 'Grapes', price: 150, discountPrice: 100, image: 'https://media.istockphoto.com/id/489520104/tr/foto%C4%9Fraf/green-grape-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=665OsfnZNdOjuldPeG8jAt6Gt-2tWKBBfbQXoP6oR-E=', discount: '33% OFF' },
+  { name: 'Pineapple', price: 90, discountPrice: 70, image: 'https://img.freepik.com/premium-photo/pineapple-isolated-white-background_253984-5776.jpg', discount: '22% OFF' },
+  { name: 'Kiwi', price: 130, discountPrice: 100, image: 'https://i.pinimg.com/originals/13/fe/74/13fe7434de9b4c36410744dbd843fdff.jpg', discount: '23% OFF' },
+  { name: 'Strawberry', price: 200, discountPrice: 150, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxfTC-TfIpQfOydWMXeU2CHsJC_ULzcjQL2A&s', discount: '25% OFF' },
+  { name: 'Blueberry', price: 250, discountPrice: 200, image: 'https://i.pinimg.com/736x/ba/49/b7/ba49b7a3e345063e4d53f28b50529523.jpg', discount: '20% OFF' },
+  { name: 'Papaya', price: 50, discountPrice: 40, image: 'https://media.istockphoto.com/id/1195369490/photo/papaya-fruit.jpg?s=612x612&w=0&k=20&c=LfnJxA98pJGmExCpC2E62hc4rxQWMsZsYWbJYrrQOPI=', discount: '20% OFF' },
+]
+
+const vegetablesData = [
+  { name: 'Broccoli', price: 80, discountPrice: 60, image: 'https://t4.ftcdn.net/jpg/01/38/59/65/360_F_138596527_vo9I8cKl20phDuIauIEfeQ2mWGw60Wjm.jpg', discount: '25% OFF' },
+  { name: 'Carrot', price: 40, discountPrice: 30, image: 'https://www.1zoom.me/big2/34/117357-yana.jpg', discount: '25% OFF' },
+  { name: 'Spinach', price: 30, discountPrice: 20, image: 'https://i.pinimg.com/736x/31/08/9b/31089b675c44846cc2db41db85155e41.jpg', discount: '33% OFF' },
+  { name: 'Bell Pepper', price: 60, discountPrice: 45, image: 'https://img.freepik.com/premium-photo/bell-peppers-isolated-white-background_198067-11.jpg', discount: '25% OFF' },
+  { name: 'Mushroom', price: 100, discountPrice: 75, image: 'https://media.istockphoto.com/id/183359979/photo/two-white-mushrooms-on-white-background.jpg?s=612x612&w=0&k=20&c=UVeuqO2B8KZ8uWO-1wP69xc0yFwB6HmOvcsqVbV88jo=', discount: '25% OFF' },
+  { name: 'Tomato', price: 20, discountPrice: 15, image: 'https://st2.depositphotos.com/1642482/46187/i/450/depositphotos_461876200-stock-photo-tomato-isolated-white-background-tomato.jpg', discount: '25% OFF' },
+  { name: 'Onion', price: 40, discountPrice: 35, image: 'https://img.freepik.com/premium-photo/red-whole-onion-isolated-white-background-fresh-whole-sliced-red-purple-onions_667286-3491.jpg', discount: '12% OFF' },
+  { name: 'Cabbage', price: 35, discountPrice: 25, image: 'https://img.freepik.com/premium-photo/cabbage-isolated-white-background_881868-1084.jpg', discount: '29% OFF' },
+  { name: 'Cauliflower', price: 50, discountPrice: 40, image: 'https://static.vecteezy.com/system/resources/previews/026/512/568/large_2x/cauliflower-isolated-on-white-background-ai-generated-photo.jpg', discount: '20% OFF' },
+  { name: 'Potato', price: 25, discountPrice: 20, image: 'https://t3.ftcdn.net/jpg/01/51/21/90/360_F_151219098_uZdemuk8HnmkEcCpueNxHexY71p34bSp.jpg', discount: '20% OFF' },
+];
+
+
+function Fruits() {
+  const [selectedCategory, setSelectedCategory] = useState('exotic-fruits');
+  const [ratings, setRatings] = useState([]);
+  const [quantities, setQuantities] = useState({});
+  const [showButtons, setShowButtons] = useState({});
+  const { addItemToCart } = useCart();
+  const navigate = useNavigate();
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleshow = (product) => {
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.name]: true,
+    }));
+  };
+
+  const handleRatingChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setRatings([...ratings, value]);
+    } else {
+      setRatings(ratings.filter((rating) => rating !== value));
+    }
+  };
+
+  const handleAddToCart = (product) => {
+    const quantity = quantities[product.name] || 1; // Default to 1 if undefined
+    addItemToCart({ ...product, quantity }); // Add to cart with the selected quantity
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.name]: false, // Hide the buttons after adding to cart
+    }));
+    setQuantities((prev) => ({
+      ...prev,
+      [product.name]: 0, // Reset quantity
+    }));
+  };
+
+  const handleIncreaseQuantity = (productName) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [productName]: (prev[productName] || 0) + 1,
+    }));
+  };
+
+  const handleDecreaseQuantity = (productName) => {
+    setQuantities((prev) => {
+      const currentQuantity = prev[productName] || 0;
+      if (currentQuantity > 1) {
+        return { ...prev, [productName]: currentQuantity - 1 };
+      } else {
+        const newQuantities = { ...prev };
+        delete newQuantities[productName];
+        return newQuantities;
+      }
+    });
+  };
+
+  const products = selectedCategory === 'exotic-fruits' ? fruitsData : vegetablesData;
+
+  const calculateSavedAmount = (product) => {
+    return product.price - product.discountPrice;
+  };
+
+  return (
+    <div style={{ display: 'flex', padding: '20px' }}>
+      {/* Sidebar for filters */}
+      <div style={{ flex: '0 0 250px', marginRight: '20px' }}>
+        <IconButton onClick={() => navigate(-1)}>
+          <ArrowBack />
+        </IconButton>
+        <h2>Categories</h2>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleCategoryChange('exotic-fruits')}
+          style={{ marginBottom: '10px' }}
+        >
+          Exotic Fruits
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => handleCategoryChange('vegetables')}
+          style={{ marginBottom: '10px' }}
+        >
+          Vegetables
+        </Button>
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate('/sprouts')}
+          style={{ marginBottom: '10px' }}
+        >
+          Cuts & Sprouts
+        </Button>
+
+        <FormGroup>
+          <h2>Filter by Ratings</h2>
+          {['4', '3', '2', '1'].map((rating) => (
+            <FormControlLabel
+              key={rating}
+              control={
+                <Checkbox
+                  checked={ratings.includes(rating)}
+                  onChange={handleRatingChange}
+                  value={rating}
+                />
+              }
+              label={`Rating: ${rating} star${rating > 1 ? 's' : ''}`}
+            />
+          ))}
+        </FormGroup>
+      </div>
+
+      {/* Product cards */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+        {products.map((product) => (
+          <div
+            key={product.name}
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              width: '280px',
+              position: 'relative',
+            }}
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{
+                width: '200px',
+                height: '180px',
+                paddingLeft: '30px',
+                objectFit: 'cover',
+              }}
+            />
+            <div style={{ paddingLeft: '20px' }}>
+              <h3>{product.name}</h3>
+              <p>
+                MRP: <del>{`₹${product.price}`}</del>
+              </p>
+              <p>
+                Price: {`₹${product.discountPrice}`}{' '}
+                <span style={{ color: 'red' }}>({product.discount})</span>
+              </p>
+              <p style={{ color: 'green' }}>
+                You Save: {`₹${calculateSavedAmount(product)}`}
+              </p>
+            </div>
+
+            {/* Conditional Rendering */}
+            {showButtons[product.name] ? (
+              // Three Buttons: Decrease, Quantity Display, Increase, and Confirm
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: '10px',
+                }}
+              >
+                <IconButton
+                  onClick={() => handleDecreaseQuantity(product.name)}
+                  disabled={quantities[product.name] <= 0}
+                >
+                  <RemoveIcon />
+                </IconButton>
+                <span style={{ margin: '0 10px' }}>
+                  {quantities[product.name] || 0}
+                </span>
+                <IconButton onClick={() => handleIncreaseQuantity(product.name)}>
+                  <AddIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleAddToCart(product)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Confirm
+                </Button>
+              </div>
+            ) : (
+              // "Add to Cart" Button
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleshow(product)}
+                style={{ marginTop: '10px', width: '100%' }}
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Fruits;
+
+
+
+import React, { useState, useEffect } from 'react';
+import { Button, IconButton, Box, Snackbar, SnackbarContent } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'; 
+import { useCart } from './CartContext'; 
+import Apphead from './Apphead';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; 
+import { useNavigate } from 'react-router-dom';
+
+
+const fruitsData = [
+  { id:'f201',name: 'Apple', price: 120, discountPrice: 90, image: 'https://c4.wallpaperflare.com/wallpaper/567/218/528/apples-fruit-cut-leaf-wallpaper-preview.jpg', discount: '25% OFF' },
+  { id:'f202',name: 'Banana', price: 60, discountPrice: 45, image: 'https://i.pinimg.com/736x/d6/2c/6f/d62c6fab8756a07ce13d30059120cc32.jpg', discount: '25% OFF' },
+  { id:'f203',name: 'Orange', price: 80, discountPrice: 60, image: 'https://media.istockphoto.com/id/182463420/photo/tangerine-duo-with-leafs.jpg?s=612x612&w=0&k=20&c=d3JZRAqgqZ5RWyN4ryFteCnmFNbeD9e3TNJkS2IC0vU=', discount: '25% OFF' },
+  { id:'f204',name: 'Mango', price: 100, discountPrice: 75, image: 'https://media.istockphoto.com/id/1417819877/photo/beautiful-delicious-mango-isolated-on-white-table-background.jpg?s=612x612&w=0&k=20&c=Nc7qBj0bnVzg6eUoFUw4YvUc0MFlcvWpxEsyDBBpDFI=', discount: '25% OFF' },
+  { id:'f205',name: 'Grapes', price: 150, discountPrice: 100, image: 'https://media.istockphoto.com/id/489520104/tr/foto%C4%9Fraf/green-grape-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=665OsfnZNdOjuldPeG8jAt6Gt-2tWKBBfbQXoP6oR-E=', discount: '33% OFF' },
+  { id:'f206',name: 'Pineapple', price: 90, discountPrice: 70, image: 'https://img.freepik.com/premium-photo/pineapple-isolated-white-background_253984-5776.jpg', discount: '22% OFF' },
+  { id:'f207',name: 'Kiwi', price: 130, discountPrice: 100, image: 'https://i.pinimg.com/originals/13/fe/74/13fe7434de9b4c36410744dbd843fdff.jpg', discount: '23% OFF' },
+  { id:'f208',name: 'Strawberry', price: 200, discountPrice: 150, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxfTC-TfIpQfOydWMXeU2CHsJC_ULzcjQL2A&s', discount: '25% OFF' },
+  { id:'f209',name: 'Blueberry', price: 250, discountPrice: 200, image: 'https://i.pinimg.com/736x/ba/49/b7/ba49b7a3e345063e4d53f28b50529523.jpg', discount: '20% OFF' },
+  { id:'f200',name: 'Papaya', price: 50, discountPrice: 40, image: 'https://media.istockphoto.com/id/1195369490/photo/papaya-fruit.jpg?s=612x612&w=0&k=20&c=LfnJxA98pJGmExCpC2E62hc4rxQWMsZsYWbJYrrQOPI=', discount: '20% OFF' },
+]
+
+const slideshowImages = [
+  'https://png.pngtree.com/background/20230618/original/pngtree-an-array-of-different-fruits-and-vegetables-on-a-table-picture-image_3712761.jpg',
+  'https://png.pngtree.com/background/20230611/original/pngtree-many-fruits-are-placed-next-to-each-other-in-different-piles-picture-image_3142149.jpg',
+  'https://img.freepik.com/premium-photo/picture-fruits-vegetables-with-words-fruit-top_950347-4386.jpg'
+];
+
+function Fruits() {
+  const [quantities, setQuantities] = useState({});
+  const [showButtons, setShowButtons] = useState({});
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const { addItemToCart } = useCart();
+  const navigate = useNavigate(); 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % slideshowImages.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleShow = (product) => {
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.id]: true,
+    }));
+  };
+
+  const handleAddToCart = (product) => {
+    const quantity = quantities[product.id] || 1;
+    addItemToCart({ ...product, quantity });
+    setSnackbarMessage(`${product.name} has been added to the cart!`);
+    setSnackbarOpen(true);
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.id]: false,
+    }));
+    setQuantities((prev) => ({
+      ...prev,
+      [product.id]: 0,
+    }));
+  };
+
+  const handleIncreaseQuantity = (productId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1,
+    }));
+  };
+
+  const handleDecreaseQuantity = (productId) => {
+    setQuantities((prev) => {
+      const currentQuantity = prev[productId] || 0;
+      if (currentQuantity > 1) {
+        return { ...prev, [productId]: currentQuantity - 1 };
+      } else {
+        const newQuantities = { ...prev };
+        delete newQuantities[productId];
+        return newQuantities;
+      }
+    });
+  };
+
+  const calculateSavedAmount = (product) => {
+    return product.price - product.discountPrice;
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleCircleClick = (index) => {
+    setCurrentImageIndex(index);
+  };
+
+  return (
+    <div>
+      <Apphead />
+      <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
+        <IconButton onClick={() => navigate('/')} color="inherit">
+          <ArrowBackIcon />
+        </IconButton>
+        <Box style={{ ...styles.con, backgroundImage: `url(${slideshowImages[currentImageIndex]})` }}>
+          <h1 style={styles.heading}>Fruitful Happiness Awaits!</h1>
+          <div style={styles.circlesContainer}>
+            {slideshowImages.map((_, index) => (
+              <div
+                key={index}
+                style={{
+                  ...styles.circle,
+                  backgroundColor: currentImageIndex === index ? 'blue' : 'gray',
+                }}
+                onClick={() => handleCircleClick(index)}
+              />
+            ))}
+          </div>
+        </Box>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '50px' }}>
+        <h1
+        style={{
+          textAlign: 'left',
+          marginLeft: '20px',
+          color: 'green',
+          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // Adds a shadow effect
+          fontFamily: 'Arial, sans-serif', // Choose a clean font
+          fontSize: '2.5em', // Adjust the font size
+          fontWeight: 'bold', // Make the text bold
+          padding: '10px 0', // Add padding for spacing
+          letterSpacing: '1px', // Add some letter spacing
+        }}>My Fruits</h1>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
+        {fruitsData.map((product) => (
+          <div key={product.id} style={styles.productCard}>
+            <img src={product.image} alt={product.name} style={styles.productImage} />
+            <div style={{ paddingLeft: '20px' }}>
+              <h3>{product.name}</h3>
+              <p style={{ textDecoration: 'line-through' }}>{`₹ ${product.price}`}</p>
+              <p style={{ color: 'green' }}>{`₹ ${product.discountPrice} (${product.discount})`}</p>
+              <p style={{ color: 'red' }}>{`You save: ₹ ${calculateSavedAmount(product)}`}</p>
+            </div>
+            {showButtons[product.id] ? (
+              <div style={styles.quantityControls}>
+                <IconButton onClick={() => handleDecreaseQuantity(product.id)}>
+                  <RemoveIcon />
+                </IconButton>
+                <span style={{ margin: '0 10px' }}>{quantities[product.id] || 0}</span>
+                <IconButton onClick={() => handleIncreaseQuantity(product.id)}>
+                  <AddIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleAddToCart(product)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Confirm
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleShow(product)}
+                style={styles.addButton}
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+      <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+        <SnackbarContent
+          style={{ backgroundColor: 'green' }}
+          message={
+            <span style={{ display: 'flex', alignItems: 'center', color: 'white' }}>
+              <CheckCircleIcon style={{ marginRight: '8px', color: 'white' }} />
+              {snackbarMessage}
+            </span>
+          }
+          action={
+            <Button color="inherit" onClick={handleCloseSnackbar}>
+              Close
+            </Button>
+          }
+        />
+      </Snackbar>
+    </div>
+  );
+  
+}
+const styles = {
+  con: {
+    backgroundColor: 'lightblue',
+    color: 'black',
+    borderRadius: '8px',
+    height: '350px',
+    width: '1300px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: '20px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    marginLeft: '110px',
+    margin: '59px',
+    position: 'relative', // Enables absolute positioning for child elements
+  },
+  heading: {
+    color: 'white',
+    paddingLeft: '30px',
+    textShadow: '3px 3px 4px black',
+    fontFamily: 'Hobo Std',
+    alignSelf: 'flex-start',
+    marginTop: '5px',
+  },
+  circlesContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    position: 'absolute', // Position absolutely within the image container
+    bottom: '20px', // Adjusts the distance from the bottom edge of the container
+    width: '100%', // Ensures circles are centered horizontally
+  },
+  circle: {
+    width: '15px',
+    height: '15px',
+    borderRadius: '50%',
+    margin: '0 5px',
+    cursor: 'pointer',
+  },
+  productCard: {
+    border: '1px solid #ccc',
+    padding: '10px',
+    width: '280px',
+    position: 'relative',
+    margin: '10px',
+  },
+  productImage: {
+    width: '200px',
+    height: '180px',
+    paddingLeft: '30px',
+    objectFit: 'cover',
+  },
+  quantityControls: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '10px',
+  },
+  addButton: {
+    marginTop: '10px',
+    width: '100%',
+  },
+};
+
+
+export default Fruits;
+

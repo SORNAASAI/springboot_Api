@@ -1,0 +1,598 @@
+Setting up and Components
+1)
+import React from 'react';
+
+const InlineExample = () => {
+  // Inline styles for each element
+  const headingStyle = {
+    color: 'green', // Green color for the heading
+  };
+
+  const divStyle = {
+    backgroundColor: 'lightblue', // Light blue background color
+    color: 'darkblue',            // Dark blue text color
+    padding: '10px',              // 10px padding
+    border: '1px solid blue',     // Blue border
+    borderRadius: '5px',          // Rounded corners with 5px radius
+  };
+
+  const paragraphStyle = {
+    color: 'darkblue', // Dark blue text color for the paragraph
+    fontSize: '16px',  // Font size set to 16px
+  };
+
+  return (
+    <div>
+      <h1 style={headingStyle}>Inline Style in JSX Example</h1>
+      <div style={divStyle}>
+        <p style={paragraphStyle}>This is a paragraph with inline styles applied.</p>
+      </div>
+    </div>
+  );
+};
+
+export default InlineExample;
+2)
+import React, { useState } from 'react';
+
+const BasicForm = () => {
+  // State to hold form input values
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  // Handle changes to input fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page reload on form submission
+    console.log('Form Data:', formData); // Display form data in the console
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="message">Message:</label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default BasicForm;
+
+3)
+import React from 'react';
+function HelloWorld()
+{
+return(
+<div>
+   <h1>Hello, World!</h1>
+</div>
+)
+}
+export default HelloWorld;
+State and Props
+1)
+import React, { useState } from 'react';
+
+const Toggle = () => {
+  // State to track whether the component should be shown or hidden
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Toggle visibility and button text
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <div>
+      <button onClick={toggleVisibility}>
+        {isVisible ? 'Hide Component' : 'Show Component'}
+      </button>
+      {isVisible && <p>Hi! How are You!!!</p>}
+    </div>
+  );
+};
+
+export default Toggle;
+
+2)
+import React, { useState } from 'react';
+
+const TransformationToggle = () => {
+  // State to track the current transformation state
+  const [transformation, setTransformation] = useState('Kaioken');
+
+  // Toggle transformation state between "Kaioken" and "SuperSaiyan"
+  const toggleTransformation = () => {
+    setTransformation((prevTransformation) =>
+      prevTransformation === 'Kaioken' ? 'SuperSaiyan' : 'Kaioken'
+    );
+  };
+
+  return (
+    <div>
+      <h1>Current Transformation: {transformation}</h1>
+      <button onClick={toggleTransformation}>
+        {transformation === 'Kaioken' ? 'Switch to SuperSaiyan' : 'Switch to Kaioken'}
+      </button>
+    </div>
+  );
+};
+
+export default TransformationToggle;
+
+3)
+import React, { useState } from 'react';
+import WeatherDisplay from './WeatherDisplay';
+
+const WeatherApp = () => {
+  const [location, setLocation] = useState('New York'); // Initial location
+  const [inputValue, setInputValue] = useState(''); // Input field value
+
+  // Update input value when typing
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  // Update location when clicking "Update Location" button
+  const updateLocation = () => {
+    setLocation(inputValue);
+  };
+
+  return (
+    <div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f0f0ff' }}>
+      <h2 style={{ fontWeight: 'bold' }}>Weather Application</h2>
+      <input
+        type="text"
+        placeholder="Enter new location"
+        value={inputValue}
+        onChange={handleInputChange}
+        style={{ padding: '5px', marginRight: '10px' }}
+      />
+      <button onClick={updateLocation} style={{ padding: '5px' }}>Update Location</button>
+      <WeatherDisplay location={location} />
+    </div>
+  );
+};
+
+export default WeatherApp;
+
+import React from 'react';
+
+const WeatherDisplay = ({ location }) => {
+  // Hardcoded weather data for demonstration purposes
+  const temperature = '20°C';
+  const condition = 'Sunny';
+
+  return (
+    <div style={{ marginTop: '20px', padding: '10px', backgroundColor: '#e6e6fa', borderRadius: '5px' }}>
+      <h3>Current Weather in {location}</h3>
+      <p>Temperature: {temperature}</p>
+      <p>Condition: {condition}</p>
+    </div>
+  );
+};
+
+export default WeatherDisplay;
+
+Styles and material ui
+1)
+
+import React, { useState } from 'react';
+import { TextField, Button, Autocomplete } from '@mui/material';
+
+const FruitSurvey = () => {
+  const [name, setName] = useState('');
+  const [fruit, setFruit] = useState('');
+  const [message, setMessage] = useState('');
+
+  const fruits = ['Apple', 'Banana', 'Cherry', 'Durian', 'Elderberry'];
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setMessage(`Hello, ${name}! Your favorite fruit is ${fruit}.`);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Name"
+          data-testid="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          fullWidth
+          margin="normal"
+        />
+
+        <Autocomplete
+          options={fruits}
+          data-testid="autocomplete"
+          renderInput={(params) => (
+            <TextField {...params} label="Choose a fruit" margin="normal" />
+          )}
+          value={fruit}
+          onChange={(event, newValue) => setFruit(newValue)}
+          fullWidth
+        />
+
+        <Button
+          type="submit"
+          data-testid="button"
+          variant="contained"
+          color="primary"
+        >
+          Submit
+        </Button>
+      </form>
+
+      {message && <p>{message}</p>}
+    </div>
+  );
+};
+
+export default FruitSurvey;
+2)
+import React, { useState } from 'react';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+
+const LoginDialog = () => {
+  const [open, setOpen] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleLogin = () => {
+    // Add login logic here
+    console.log('Username:', username);
+    console.log('Password:', password);
+    setOpen(false); // Close the dialog on successful login
+  };
+
+  return (
+    <div>
+      <Button
+        variant="contained"
+        color="primary"
+        data-testid="login"
+        onClick={handleOpen}
+      >
+        Login
+      </Button>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Login</DialogTitle>
+
+        <DialogContent>
+          <TextField
+            label="Username"
+            data-testid="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            fullWidth
+            margin="dense"
+          />
+          <TextField
+            label="Password"
+            type="password"
+            data-testid="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+            margin="dense"
+          />
+        </DialogContent>
+
+        <DialogActions>
+          <Button
+            data-testid="cancel"
+            onClick={handleClose}
+            color="secondary"
+          >
+            Cancel
+          </Button>
+          <Button
+            data-testid="dia-login"
+            onClick={handleLogin}
+            color="primary"
+          >
+            Login
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+};
+
+export default LoginDialog;
+
+3)
+import React from 'react';
+import { List, ListItem, ListItemText, Divider, Typography } from '@mui/material';
+
+const books = [
+  { 
+    title: 'The Holy Bible', 
+    description: 'Religious text of Christianity, considered sacred and canonical.' 
+  },
+  { 
+    title: 'Quotations from Chairman Mao', 
+    description: 'Collection of statements from speeches and writings by Mao Zedong.' 
+  },
+  { 
+    title: 'Harry Potter series', 
+    description: 'Fantasy novels by J.K. Rowling, following the life of a young wizard.' 
+  },
+  { 
+    title: 'The Lord of the Rings', 
+    description: 'High-fantasy novel written by J.R.R. Tolkien, set in Middle-earth.' 
+  },
+  { 
+    title: 'To Kill a Mockingbird', 
+    description: 'Novel by Harper Lee, dealing with racial injustice and moral growth.' 
+  }
+];
+
+const BookList = () => {
+  return (
+    <div>
+      <Typography variant="h4" gutterBottom>
+        Most Influential Books of All Time
+      </Typography>
+      <List>
+        {books.map((book, index) => (
+          <React.Fragment key={index}>
+            <ListItem>
+              <ListItemText
+                primary={book.title}
+                secondary={book.description}
+              />
+            </ListItem>
+            {index < books.length - 1 && <Divider />}
+          </React.Fragment>
+        ))}
+      </List>
+    </div>
+  );
+};
+
+export default BookList;
+routing and form creation
+1)
+//albumlist
+import React from 'react';
+function Albumslist()
+{
+    const album = [
+        { name: 'Thriller', singer: 'Michael Jackson' },
+        { name: 'Like a Virgin', singer: 'Madonna' },
+        { name: 'A Night at the Opera', singer: 'Queen' },
+        { name: 'Blue Hawaii', singer: 'Elvis Presley' },
+      ];
+    
+return(
+    <div>
+<h2>Albums</h2>
+<ul>
+    {album.map((a,index)=>(
+        <li key={index}>
+            {a.name} - by {a.singer}
+        </li>
+    ))}
+</ul>
+    </div>
+)
+}
+export default Albumslist;
+//home.js
+import React from 'react';
+function Home()
+{
+return(
+    <div>
+        <h1>Welcome to music world</h1>
+    </div>
+)
+}
+export default Home;
+//NavBar.js
+import React from 'react';
+import {Link} from 'react-router-dom';
+function Navbar()
+{
+    return(
+        <nav>
+            <h2>Music world</h2>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/singers">Singers</Link>
+                </li>
+                <li>
+                    <Link to="/albums">Albums</Link>
+                </li>
+            </ul>
+        </nav>
+    )
+}
+export default Navbar;
+//singers
+import React from 'react';
+function Singers()
+{
+    const singersList = [
+        { name: 'Elvis Presley', year: 1954 },
+        { name: 'Michael Jackson', year: 1971 },
+        { name: 'Madonna', year: 1982 },
+        { name: 'Freddie Mercury', year: 1970 },
+      ];
+return(
+    <div>
+<h2>Singers</h2>
+<ul>
+    {singersList.map((singer,index)=>(
+    <li key={index}>
+{singer.name}- Active since 
+{singer.year}
+</li>
+    ))}
+</ul>
+</div>
+)
+}
+export default Singers;
+
+//app.js
+
+import React from 'react';
+import Home from './components/Day9/Home';
+import Singers from './components/Day9/Singers';
+import Albumslist from './components/Day9/Albumslist';
+import Navbar from './components/Day9/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/singers" element={<Singers />} />
+          <Route path="/albums" element={<Albumslist />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+2)
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from '../day9/home';
+import About from '../day9/about';
+import Contact from '../day9/contact';
+
+const Pah = () => {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+export default Pah;
+import React from 'react';
+
+const Home = () => {
+  return <h2>Welcome to the Home Page</h2>;
+};
+
+import React from 'react';
+
+const Home = () => {
+  return <h2>Welcome to the Home Page</h2>;
+};
+
+export default Home;
+import React from 'react';
+
+const Contact = () => {
+  return <h2>Contact Us</h2>;
+};
+
+export default Contact;
+import React from 'react';
+
+const About = () => {
+  return <h2>About Us</h2>;
+};
+
+export default About;
+Hooks and redux
+1)import React,{useState,useEffect} from 'react';
+function Hookeffect()
+{
+    const[message,setMessage]=useState('Hello dear one,learning React...?')
+    useEffect(()=>
+    {
+        console.log('use effect hook called');
+        setTimeout(()=>
+        {
+            setMessage("Great.... This is time to learn about HOOKS");
+        },2000)
+    })
+return(
+    <div>
+<h2>{message}</h2>
+    </div>
+)
+}
+export default Hookeffect;
+context api,hof
+1)
+

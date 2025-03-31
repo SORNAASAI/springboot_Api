@@ -1,0 +1,32 @@
+Defining Operating Systems - User view - System view - Computer-System organization - Computer
+System Architecture - Operating System Operations - Resource Management - Virtualization - Computing
+Environments - OS Services - System Calls - Overview of Operating System Specific applications - OS
+Structures - System Boot. Process: Concept - Scheduling – Operations. Thread: Overview - Multicore
+Programming - Multithreading Models.
+
+
+
+
+https://www.geeksforgeeks.org/states-of-a-process-in-operating-systems/
+https://www.geeksforgeeks.org/thread-in-operating-system/
+https://www.geeksforgeeks.org/operating-system-services/
+https://www.geeksforgeeks.org/what-is-command-line-interface-cli/
+https://www.geeksforgeeks.org/what-is-graphical-user-interface/
+https://www.geeksforgeeks.org/introduction-of-system-call/
+https://www.geeksforgeeks.org/dual-mode-operations-os/
+
+
+
+
+
+pagind=466
+demand paging=500
+
+
+Context switching in an operating system involves saving the context or state of a running process so that it can be restored later, and then loading the context or state of another. process and run it.,context switcher enables multiple process to share a single cpu
+overhead refers to the additional time, resources, or computational work required to perform certain tasks or manage system processes, beyond the basic execution of user programs.
+The exec() family of functions replaces the current process image with a new process image. It loads the program into the current process space and runs it from the entry point.
+
+Combines object files into a single executable file:
+Loads an executable file into memory and prepares it for execution:
+Source files are compiled into object files

@@ -1,0 +1,118 @@
+// Homepage.js
+import React, { useState } from 'react';
+import { Box, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material'; // Import Button here
+import ProductCard from './ProductCard';
+import Loginpge from './Loginpge';
+import Signup from './Signup';
+import SimpleDialog from './SimpleDialog'; // Import SimpleDialog
+import Footer from './Footer';
+import Apphead from './Apphead'; // Import the Apphead component
+
+function Homepage() {
+  const [dialogOpen, setDialogOpen] = useState(null); // null, 'login', or 'signup'
+  const [simpleDialogOpen, setSimpleDialogOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('');
+ 
+
+  const handleOpenDialog = (type) => {
+    setDialogOpen(type);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(null);
+  };
+
+  const handleCloseSimpleDialog = (value) => {
+    setSimpleDialogOpen(false);
+    setSelectedValue(value);
+  };
+
+ 
+
+  return (
+    <div> <Apphead handleOpenDialog={handleOpenDialog} />
+      {/* Use the correct Apphead component */}
+      
+      {/* Dialog for Login */}
+      <Dialog open={dialogOpen === 'login'} onClose={handleCloseDialog} fullWidth maxWidth="sm">
+        <DialogTitle>Login</DialogTitle>
+        <DialogContent>
+          <Loginpge />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">Close</Button>
+        </DialogActions>
+      </Dialog>
+      
+      {/* Dialog for Signup */}
+      <Dialog open={dialogOpen === 'signup'} onClose={handleCloseDialog} fullWidth maxWidth="sm">
+        <DialogTitle>Sign Up</DialogTitle>
+        <DialogContent>
+          <Signup />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">Close</Button>
+        </DialogActions>
+      </Dialog>
+      
+      {/* Simple Dialog */}
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={simpleDialogOpen}
+        onClose={handleCloseSimpleDialog}
+      />
+     <div >
+      <Box style={styles.con}>
+        <h1
+          style={{
+            color: 'Green',
+            paddingLeft: '30px',
+            textShadow: '3px 3px 4px black',
+            fontFamily: 'Hobo Std',
+            alignSelf: 'flex-start', // Align the text to the left
+            marginTop: '5px', // Ensure it stays at the top
+          }}
+        >
+          SMARTBASKET
+        </h1>
+      </Box>
+    </div>
+      <Box style={{ display: 'flex', paddingLeft: 120 }}>
+        <ProductCard
+         
+        />
+      </Box>
+      <Footer />
+    </div>
+  );
+};
+
+const styles = {
+  con: {
+    backgroundColor: 'lightblue',
+    color: 'black',
+    borderRadius: '8px',
+    height: '350px',
+    width: '1300px',
+
+    display: 'flex',
+    flexDirection: 'column', // Column layout to position the text at the top
+    justifyContent: 'flex-start', // Align text to the top
+    alignItems: 'flex-start', // Align text to the left
+    
+    padding: '20px', // Adds space inside the box
+
+    backgroundImage: 'url("https://t4.ftcdn.net/jpg/06/56/59/73/360_F_656597332_VsZignOcfl2Xp5dwtGVUiNfT7kA7rQyw.jpg")', // Replace with your image URL
+    backgroundSize: 'cover', // Cover the entire box with the background
+    backgroundPosition: 'center', // Center the image
+    backgroundRepeat: 'no-repeat', // Ensure the image doesn't repeat
+marginLeft:'110px',
+    margin: '59px', // Center the box horizontally
+  },
+
+ 
+};
+
+
+
+export default Homepage;

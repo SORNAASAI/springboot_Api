@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>count the words</title>
+    <style>
+        #grid
+        {
+            background-color:greenyellow;
+            padding-top: 100;
+            padding-left: 400;
+            padding-right:  400;
+        }
+        
+#words
+{
+    background-color: black;
+    color:yellow;
+    text-align: center;
+    padding:15px ;
+
+}
+.button
+{
+    background-color: yellow;
+}
+    </style>
+    </head>
+    <body id="grid">
+        
+        <div id="words">
+        <h3>Type a sentence</h3>
+        <form>
+        <textarea id="text"cols="20"rows="15"></textarea><br><br>
+        <button type="button" onclick="change()" class="button">Calculate Words</button>
+        </form>
+        <p id="para"></p>
+        </div>
+        <script src="count.js"> </script>
+    </body>

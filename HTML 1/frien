@@ -1,0 +1,48 @@
+<h1>7)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grid
+        {
+        grid-template-rows:auto auto auto auto;
+        display:grid;
+        height:1000px;
+        }
+        #grid1
+        {
+background-color: aqua;
+text-align: center;
+background-image: url('nature.jpg');
+background-repeat:no repeat;
+background-size: cover;
+        }
+        #grid2
+        {
+            background-color: yellow;
+
+        }
+        #grid3
+        {
+            background-color: pink;
+        }
+        #grid4
+        {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="grid">
+    <div id="grid1">
+        <p>SOME OF MY FAV<br><br>FOODS</p>
+    </div>
+    <div id="grid2">Lorem ipsum dolor sit amet.</div>
+    <div id="grid3">Lorem ipsum dolor sit amet.</div>
+    <div id="grid4">Lorem ipsum dolor sit amet.</div>
+    </div>
+</body>
+<

@@ -1,0 +1,28 @@
+empathy is about going through somebody else's experience as if it were your own.
+ understandwhat is it that people are really going through and this requires empathy.
+customer journey mapping.It is a very simple technique, and interview based sticky note technique that you can useto map the entire journey that any of your customer is going through
+So, his approach, John Professor Arnold’s approach was to sort of take the studentsoff this whole beaten path of thinking only about themselves and their own context, butalso thinking about somebody who are far connected
+the aliens there have three fingers.So, they are not like us, with five fingers in each hand.So, each hand is three fingers.They have three eyes.So, one of them can actually see x-rays.So, the very different.There, the atmosphere that they have is not oxygen rich but methane rich.So, he called the aliens Methanians or Methaniance.So, they were very different from Earthlings, also, is their temperature, their averagesummer temperature was -50° C and their average winter temperature is -110° C. So, none ofwhat is valid for Earth is actually valid for Arcturus, IV.Also, another thing to be noticed is that their gravity is 11 times more than that ofEarth.
+ Arcturus is a starin a constellation called Bootes.
+
+o the performance that I am monitoring in this case of the student is his on-time performanceand the variable that we have will let him enrol for many courses or enrol for very fewcourses.So as I said, this relies on the assumption that if they had less deadlines, they wouldsleep early and if they slept early, they would wake up early and if they wake up early,they are on time for the class.
+
+replCE And with but in story to create a conflict
+ Element Name Value method of describing a conflict.
+
+it’s Siberia in Russia
+and the time period around which this photograph was taken was in the 40’s s
+ Gulag prison 
+young inventor by name Altshuller was imprisonedin this prison
+So our inventor actually started working in the patent office.
+He developed an algorithm of problem solving, he called it ARIZ is the Russian acronym foralgorithm of inventive problem solving
+
+ed 76 standard solutions t
+So lots of times we look at smaller portions, smaller solutions, smaller ideas and we thinkthis is what will solve it, whereas something put together unity actually would do the trick.
+
+
+ Captain Belcher. hydrographe -
+double real=r1*r2-i1*i2;
+        double img=r1*i2+r2*i1;
+        System.out.println("Multiplication:");
+        System.out.printf("\t%.4f +%.4f i\n",real,img);

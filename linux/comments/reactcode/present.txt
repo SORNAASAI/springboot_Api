@@ -1,0 +1,429 @@
+// src/components/LoginPage.js
+
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useAuth } from './AuthContext';
+import { Button, TextField, Box, Typography, IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Import the back icon
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+
+function Loginpge() {
+  const { login, logout, isLoggedIn } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    let isValid = true;
+    setLoginError(''); // Clear previous login error message
+
+    // Validate email
+    if (!email) {
+      setEmailError('Email Address is required');
+      isValid = false;
+    } else if (!emailPattern.test(email)) {
+      setEmailError('Enter a valid email address');
+      isValid = false;
+    } else {
+      setEmailError('');
+    }
+
+    // Validate password
+    if (!password) {
+      setPasswordError('Password is required');
+      isValid = false;
+    } else if (password.length < 8) {
+      setPasswordError('Password must be at least 8 characters long');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    if (isValid) {
+      try {
+        const response = await axios.get('http://localhost:3000/person');
+        const users = response.data;
+
+        const matchingUser = users.find(
+          (user) => user.email === email && user.password === password
+        );
+
+        if (matchingUser) {
+          const userData = {
+            name: matchingUser.firstName + ' ' + matchingUser.lastName,
+            email: matchingUser.email,
+            phone: matchingUser.phoneNumber,
+            location: matchingUser.location,
+          };
+          localStorage.setItem('user', JSON.stringify(userData));
+
+          login(); // Set login state using AuthContext
+
+          alert('Login successful!');
+          setEmail('');
+          setPassword('');
+          navigate('/');
+        } else {
+          setLoginError('Invalid email or password. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setLoginError('Failed to connect to the server. Please try again later.');
+      }
+    }
+  };
+
+  // Function to handle back navigation
+  const handleBackClick = () => {
+    navigate('/cart'); // Go back to the previous page
+  };
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80vh',
+        padding: 2,
+      }}
+    >
+      {/* Back Button */}
+      <IconButton onClick={handleBackClick} style={{ position: 'absolute', left: 20, top: 20 }}>
+        <ArrowBackIcon />
+      </IconButton>
+
+      <Box
+        component="img"
+        src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1729382400&semt=ais_hybrid"
+        alt="Login Illustration"
+        sx={{
+          width: '45%',
+          height: 'auto',
+          maxWidth: 350,
+          marginRight: 4,
+        }}
+      />
+
+      <Box component="section" sx={{ textAlign: 'center', width: '50%' }}>
+        <Typography variant="h4" component="h1" style={styles.typo}>
+          {isLoggedIn ? 'Welcome Back!' : 'Login'}
+        </Typography>
+
+        {isLoggedIn ? (
+          <>
+            <p>You are already logged in!</p>
+            <Button variant="contained" color="secondary" onClick={logout}>
+              Log Out
+            </Button>
+          </>
+        ) : (
+          <>
+            <TextField
+              id="email"
+              label="Email"
+              style={styles.textField}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={!!emailError}
+              helperText={emailError}
+              autoComplete="off"
+            />
+            <br /><br />
+            <TextField
+              id="password"
+              label="Password"
+              type="password"
+              style={styles.textField}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={!!passwordError}
+              helperText={passwordError}
+            />
+            <br /><br />
+            {loginError && (
+              <Typography color="error" style={{ marginBottom: '20px' }}>
+                {loginError}
+              </Typography>
+            )}
+            <Button type="submit" variant="contained" onClick={handleSubmit} style={styles.button}>
+              Login
+            </Button>
+          </>
+        )}
+      </Box>
+    </Box>
+  );
+}
+
+const styles = {
+  textField: {
+    width: '100%',
+    maxWidth: 420,
+  },
+  typo: {
+    color: 'black',
+    paddingBottom: '30px',
+  },
+  button: {
+    width: '100%',
+    maxWidth: 420,
+  },
+};
+
+export default Loginpge;
+
+import React from 'react';
+import { Typography, IconButton, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from './CartContext'; // Import the cart context
+import { useAuth } from './AuthContext'; // Import the authentication context
+import { v4 as uuidv4 } from 'uuid'; // Import uuid for generating unique IDs
+
+function Addtocart() {
+  const { isLoggedIn } = useAuth();
+  const { cartItems, addItemToCart, removeItemFromCart, updateItemQuantity } = useCart(); // Get cart items and functions
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleLoginRedirect = () => {
+    navigate('/login'); // Redirect to login page
+  };
+
+  if (!isLoggedIn) {
+    return (
+      <Dialog
+        open={!isLoggedIn}
+        aria-labelledby="login-dialog-title"
+        aria-describedby="login-dialog-description"
+      >
+        <DialogTitle id="login-dialog-title">Login Required</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="login-dialog-description">
+            Please log in to view your cart.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLoginRedirect} color="primary">
+            Go to Login
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+
+  // Function to handle adding a new entry to the cart for a specific product
+  const handleAddToCart = (item) => {
+    const existingItem = cartItems.find(cartItem => cartItem.id === item.id); // Check if the item already exists
+    if (existingItem) {
+      // If item exists, update the quantity
+      updateItemQuantity(existingItem.id, existingItem.quantity + 1); // Increase quantity by 1
+    } else {
+      // Generate a unique ID for the new cart item
+      const uniqueItem = { ...item, id: uuidv4(), quantity: 1 };
+      addItemToCart(uniqueItem);
+    }
+  };
+
+  // Function to handle removing quantity for a specific product
+  const handleRemoveFromCart = (item) => {
+    const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+    if (existingItem && existingItem.quantity > 1) {
+      updateItemQuantity(item.id, existingItem.quantity - 1); // Decrease quantity by 1
+    } else {
+      removeItemFromCart(item.id); // Remove entire item if quantity is 1
+    }
+  };
+
+  // Function to handle navigating back
+  const handleBackClick = () => {
+    navigate(-1); // Go back to the previous page
+  };
+
+  // Function to handle navigating to the PaymentPage
+  const handleCheckout = () => {
+    navigate('/payment'); // Change '/payment' to the actual route for PaymentPage
+  };
+
+  // Calculate subtotal and total savings
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + (item.discountPrice || 0) * (item.quantity || 1),
+    0
+  );
+  const totalSavings = cartItems.reduce(
+    (acc, item) => acc + ((item.price || 0) - (item.discountPrice || 0)) * (item.quantity || 1),
+    0
+  );
+
+  return (
+    <div style={{ marginTop: '100px', padding: '0 200px' }}>
+      <IconButton onClick={handleBackClick}>
+        <ArrowBackIcon />
+      </IconButton>
+
+      <Typography variant="h5" style={{ margin: '20px 0' }}>
+        Your Basket
+      </Typography>
+
+      <div
+        style={{
+          backgroundColor: 'grey',
+          width: '100%',
+          height: '150px',
+          borderRadius: '15px',
+          color: 'white',
+          padding: '20px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <div>
+          <p>
+            Subtotal ({cartItems.length} item{cartItems.length > 1 ? 's' : ''}): ₹{totalPrice.toFixed(2)}
+          </p>
+          <p>
+            Savings: ₹{totalSavings.toFixed(2)}
+          </p>
+        </div>
+        <Button variant="contained" color="error" onClick={handleCheckout}>
+          Checkout
+        </Button>
+      </div>
+      <br />
+
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        cartItems.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              backgroundColor: 'white',
+              border: '2px solid black',
+              width: '100%',
+              height: '250px',
+              borderRadius: '15px',
+              color: 'black',
+              position: 'relative',
+              marginBottom: '20px',
+              display: 'flex',
+              padding: '20px',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{ width: '100px', height: '100px', marginRight: '20px' }}
+            />
+            <div style={{ flexGrow: 1 }}>
+              <p><strong>Name:</strong> {item.name}</p>
+              <p><strong>Price:</strong> ₹{(item.discountPrice || 0).toFixed(2)}</p>
+              <p><strong>Original Price:</strong> ₹{(item.price || 0).toFixed(2)}</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', flexGrow: 1, justifyContent: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span style={{ marginBottom: '10px', textAlign: 'center' }}><strong>Quantity</strong></span>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => handleRemoveFromCart(item)}
+                  >
+                    <RemoveIcon />
+                  </Button>
+                  <Button variant="outlined" color="error">
+                    {item.quantity || 1}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    <AddIcon />
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div style={{ position: 'absolute', right: '20px', top: '20px', textAlign: 'right' }}>
+              <p><strong>Subtotal</strong></p>
+              <p style={{ marginLeft: '20px' }}>
+                ₹{((item.discountPrice || 0) * (item.quantity || 1)).toFixed(2)}
+              </p>
+              <p>
+                Saved: ₹{(((item.price || 0) - (item.discountPrice || 0)) * (item.quantity || 1)).toFixed(2)}
+              </p>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  );
+}
+
+export default Addtocart;
+
+// src/AuthContext.js
+
+import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = async (email, password) => {
+    try {
+      const response = await axios.get('http://localhost:3000/person'); // Fetch users from db.json
+      const users = response.data;
+      const matchingUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (matchingUser) {
+        setUser({
+          name: `${matchingUser.firstName} ${matchingUser.lastName}`,
+          email: matchingUser.email,
+          phone: matchingUser.phoneNumber,
+          location: matchingUser.location,
+        });
+        setIsLoggedIn(true);
+        return true; // Login successful
+      } else {
+        return false; // Login failed
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      return false; // Login failed due to error
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+    setIsLoggedIn(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, isLoggedIn, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+
+
+
+

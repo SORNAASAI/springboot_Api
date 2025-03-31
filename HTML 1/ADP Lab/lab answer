@@ -1,0 +1,324 @@
+<h1>1)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTML</h1>
+    <p><b><abbr title="HyperText Markup Language">HTML</abbr></b> stands for <i><mark>Hypertext Markup Language.</i></mark><br>It acts as skeleton to web page</p>
+</body>
+</html>
+<h1>2)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Albert Einstein</h1>
+    <p>He was a German-born theoretical physicist, widely acknowledged to be one of the greatest and most influential physicists of all time.Einstein is best known for develpoing the theory of relativity,but he also made important contributions to the developed of the theory of quantum mechanics</p>
+    <img src="https://invdes.com.mx/wp-content/uploads/2020/09/10-09-20-einstein-800x445.jpg"alt="pics">
+</body>
+</html>
+<h1>3)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <form>
+    <table border="0">
+   <tr>
+    <td>UserName*</td>
+<td><input type="text"></td></tr>
+<tr><td>Email*</td>
+<td><input type="text"></td></tr>
+<tr><td>Country</td>
+<td><select name="country"id="country">
+    <option value="india">India</option>
+    <option value="canada">Canada</option></select></td></tr>
+    <tr><td>Country code:</td>
+    <td><input type="text" pattern="[A-Za-z]{3}"></td></tr>
+    <tr><td>Password</td>
+        <td><input type="password" pattern=".{6,}"></td></tr>
+<tr><td>Personal Information</td>
+<td><fieldset>
+    <legend>My personal info.</legend>
+    <label>Date of Birth:</label><br>
+    <input type="date"><br><br>
+    <label>Spouse Name</label><br>
+    <input type="text">
+</fieldset></td></tr>
+<tr>
+    <td rowspan="2">Remarks</td>
+    <td ><textarea cols="30" rows="10"placeholder="please enter your additional remarks(if any)"></textarea></td>
+</tr>
+<tr>
+    <td><input type="Submit" value="Submit"></td>
+</tr></table></form></body>
+</html>
+<h1>4)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+    <label>First Name</label>
+    <input type="text"><br><br>
+    <label>Last Name</label>
+    <input type="text"><br><br>
+    <label>Radio Button Created</label><br>
+    <input type="radio"name="aa"value="yes"id="yes">
+    <label for="yes">Yes</label><br>
+    <input type="radio"name="aa"value="no"id="no">
+    <label for="no">No</label><br><br>
+    <label>What is your favorite subject?</label><br>
+    <input type="checkbox"name="data"value="data"id="data">
+    <label for="data">Data Structures</label><br>
+    <input type="checkbox"name="system"value="system"id="system">
+    <label for="system">Operating system</label><br>
+    <input type="checkbox"name="net" value="net"id="net">
+    <label for="net">Networks</label><br>
+    <input type="checkbox"name="com"id="com" value="com">
+    <label for="com">Cloud computing</label><br><br>
+<label>Gender</label>
+<select name="gender"id="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+</select><br><br>
+<label>Date:</label>
+<input type="date"><br><br>
+<label>Enter a Number:</label>
+<input type="number" min="1"max="5"><br><br>
+<input type="sumbit"value="submit">
+</form></body>
+</html>
+<h1>5)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid
+        {
+            grid-template-columns:auto auto auto auto auto auto auto auto;
+            display:grid;
+            width:400px;
+            height:400px;
+            border-left:4px solid grey;
+            border-right:4px solid grey;
+            border-top:4px solid grey;
+        }
+        .black
+        {
+        background-color:black;
+        height:50px;
+        }
+        .white
+        {
+            background-color:white;
+            height:50px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+
+        
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        
+        
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        
+        
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        
+        
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+        <div class="white"></div>
+        <div class="black"></div>
+    </div>
+</body>
+</html>
+<h1>6)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: lightgreen;
+            
+        }
+        #titleName
+        {
+            color:darkslateblue;
+            text-align: center;
+        }
+        #vegetableSaladImage
+        {
+            width:200px;
+            height:100px;
+            padding-left:200px;
+        }
+        #benefits
+        {
+            color:blueviolet;
+            text-align: center;
+        }
+#benefitsParagraph
+{
+    padding-left:100px;
+color:blue;
+}
+#steps
+{
+    color:blueviolet;
+    text-align: center;
+}
+#stepForVegetableSalad
+{
+    color:blue;
+}
+#footerText
+{
+    color:blue;
+    text-align: center;
+}
+hr{}
+    </style>
+</head>
+<body>
+    <div>
+    <h1 id="titleName">VEGETABLE SALAD</h1>
+    <img id="vegetableSaladImage"src="https://www.familyfoodonthetable.com/wp-content/uploads/2015/05/Marinated-summer-veggie-salad-720x405.png"alt="pics">
+    <h2 id="benefits">Benefits of Vegetable Salad</h2>
+    <p id="benefitsParagraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni placeat provident dicta. Provident totam consectetur animi cumque optio atque consequatur.</p>
+    <h2 id="steps">Steps to make Vegetable Salad</h2>
+    <ul id="stepForVegetableSalad">
+        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda obcaecati nobis praesentium aut, eligendi quaerat quibusdam esse sint blanditiis unde.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, nobis?</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, iure?</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, atque.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, molestiae?</li>
+    </ul>
+    <hr>
+    
+    <footer id="footerText">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, voluptates!</p>
+    </footer>
+</div>
+</body>
+</html>
+<h1>17)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body alink="purple" link="blue">
+    <a href="#ab">Birds Section</a><br>
+    <a href="">Ducks Section</a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <p id="ab">This is the article about birds</p>
+</body>
+</body>
+</html>
+<h1>18)</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Description List</h2>
+    <dl>
+        <dt>Coffee</dt>
+        <dd>-black hot drink</dd>
+        <dt>Milk</dt>
+        <dd>-white cold drink</dd>
+    </dl>
+</body>
+</html>
+    

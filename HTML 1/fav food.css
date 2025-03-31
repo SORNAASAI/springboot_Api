@@ -1,0 +1,42 @@
+#vegetable
+{
+    background-color:lightgreen;
+    margin:-8px;
+}
+#titleName
+{
+    color:darkslateblue;
+text-align:center;}
+#benefits
+{
+    color:blueviolet;
+text-align: center;
+
+
+}
+#benefitsParagraph{
+    color:darkslateblue;
+    text-align: center;
+}
+#steps
+{
+    color:blueviolet;
+    text-align: center;
+}
+#vegetableSaladImage
+{
+    width:400px;
+    height:300px;
+    padding-left: 300px;
+    padding-right: 100px;
+}
+
+#stepForVegetableSalad
+{
+    color:darkslateblue;
+}
+#footerText
+{
+    color:darkslateblue;
+    text-align: center;
+}

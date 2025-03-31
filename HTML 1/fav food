@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fav food.css"
+</head>
+<body>
+    <div id="vegetable">
+    <h1 id="titleName">VEGETABLE SALAD</h1>
+    <img id="vegetableSaladImage" src="https://tse2.mm.bing.net/th?id=OIP.4PKS2_RBBJLhE7ttUn9KSgHaEK&pid=Api&P=0&h=180">
+    <h2 id="benefits">Benefits of Vegetable Salad</h2>
+    <p id="benefitsParagraph">Aside from their natural good taste and great crunchy texture alongside wonderful colors and fragrances,eating a large serving of fresh ,raw vegetables each day can have significant health benefits</p>
+    <h2 id="steps">Steps to make Vegetable Salad</h2>
+    <ul id="stepForVegetableSalad"type="disc">
+        <li>Take a large and clear glass bowl</li>
+        <li>Trying adding blanched,lightly steamed or roasted veggies like broccoli,french beans,corn,cauliflower,baby corn. </li>
+        <li>Add lentils,beans or chickpeas or bean sprouts for more protein .</li>
+        <li>Grate some of the vegetables for a different texture</li>
+        <li>Add marinated veggies like artichoke hearts for tang, or other veggies like raddish for some pungency</li>
+        <li>Swap in your own favorite combination of drived fruits ,nuts and seeds.</li>
+        <li>Use fresh corinderor chives instead of parsley</li>
+    </ul>
+    
+    <footer id="footerText">
+        <hr>
+<p>This easy vegetable salad is packed with a variety of summer produre with all the textures and colors one could ever want</p>
+    </footer>
+    </div>
+</body>
+</html>

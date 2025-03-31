@@ -1,0 +1,1398 @@
+Class and objects
+
+1...
+// You are using Java
+import java.util.*;
+class user
+{
+    String name;
+    String uname;
+    String pwd;
+    String mn;
+    user(String name,String uname,String pwd,String mn)
+    {
+        this.name=name;
+        this.uname=uname;
+        this.pwd=pwd;
+        this.mn=mn;
+        
+    }
+    public String get()
+    {
+        return mn;
+    }
+}
+class main
+{
+    public static void main(String args [])
+    {
+        Scanner sc=new Scanner(System.in);
+        user a[]=new user[2];
+        for(int i=0;i<2;i++)
+        {
+            String n,un,p,mn;
+            n=sc.nextLine();
+            un=sc.nextLine();
+            p=sc.nextLine();
+            mn=sc.nextLine();
+            a[i]=new user(n,un,p,mn);
+        }
+        user fir=a[0];
+        user sec=a[1];
+        if(fir.get().equals(sec.get()))
+        System.out.print("User 1 and User 2 are equal");
+        else
+        System.out.print("User 1 and User 2 are not equal");
+    }
+}
+
+3....
+// You are using Java
+import java.util.*;
+class Box
+{
+    public static void print(Double w,Double h,Double d)
+    {
+        Double ans=h*w*d;
+        if(ans>0)
+        System.out.print(ans);
+        else
+        System.out.print("Invalid");
+    }
+}
+class main
+{
+    public static void main(String args [] )
+    {
+        Scanner sc=new Scanner(System.in);
+        Double w=sc.nextDouble();
+        
+        Double h=sc.nextDouble();
+        
+        Double d=sc.nextDouble();
+        Box b=new Box();
+        b.print(w,h,d);
+    }
+}
+2..
+// You are using Java
+import java.util.Scanner;
+class Address
+{
+    String st;
+    String city;
+    String pin;
+    String co;
+    Address(String s,String c,String p,String ct)
+    {
+        st=s;
+        city=c;
+        pin=p;
+        co=ct;
+    }
+    void print()
+    {
+        System.out.println("Street: "+st);
+        System.out.println("City: "+city);
+        System.out.println("Pincode: "+pin);
+        System.out.println("Country: "+co);
+    }
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        String a=s.nextLine();
+        String b=s.nextLine();
+        String p=s.nextLine();
+        String c=s.nextLine();
+        Address ab=new Address(a,b,p,c);
+        ab.print();
+    }
+}
+
+Inheritance
+
+1...
+import java.util.Scanner;
+
+class Vehicle {
+    protected String type;
+
+    public Vehicle(String type) {
+        this.type = type;
+    }
+
+    public void displayType() {
+        System.out.println("Type: " + type);
+    }
+}
+
+class Car extends Vehicle {
+    private String brand;
+
+    public Car(String type, String brand) {
+        super(type);
+        this.brand = brand;
+    }
+
+    public void displayBrand() {
+        System.out.println("Brand: " + brand);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+    
+        String type = scanner.nextLine();
+
+      
+        String brand = scanner.nextLine();
+
+        Car car = new Car(type, brand);
+
+     
+        car.displayType();
+        car.displayBrand();
+
+        scanner.close();
+    }
+}
+
+2...
+
+// You are using Java
+// You are using Java
+import java.util.Scanner;
+class Employee
+{
+    private String name;
+     private int id;
+    private int salary;
+    static String cname="ABC corp";
+    Employee(String name,int id,int salary)
+    {
+        this.name=name;
+        this.id=id;
+        this.salary=salary;
+    }
+    String getname()
+    {
+        return name;
+    }
+    int getid()
+    {
+        return id;
+        
+    }
+    int getsalary()
+    {
+        return salary;
+    }
+    String getcname()
+    {
+        return cname;
+    }
+
+
+public void print()
+    {
+       
+            System.out.println("Employee Name: "+getname());
+            System.out.println("Employee ID: "+getid());
+            System.out.println("Employee Salary: "+getsalary());
+            System.out.println("Employee Company Name: "+getcname());
+        
+    
+    }
+public void print1(String cname)
+    {
+       
+            System.out.println("Employee Name: "+getname());
+            System.out.println("Employee ID: "+getid());
+            System.out.println("Employee Salary: "+getsalary());
+            System.out.println("Employee Company Name: "+cname);
+        
+    
+    }
+
+}
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Employee a[]=new Employee[n];
+        for(int i=0;i<n;i++)
+        {
+            String name=sc.next();
+            int id=sc.nextInt();
+            int salary=sc.nextInt();
+            a[i]=new Employee(name,id,salary);
+        }
+            String cname=sc.next();
+             
+        
+        
+        for(Employee x:a)
+        {
+            x.print();
+        }
+        System.out.println("Updated Details");
+        for(Employee t:a)
+        {
+            t.print1(cname);
+        }
+    }
+}
+
+3...
+// You are using Java
+// You are using Java
+import java.util.*;
+class Patient
+{
+    String pid;
+    String name;
+    String age;
+    String gen;
+    String add;
+    String mn;
+    Patient(String pid,String name,String age,String gen,String add,String mn)
+    {
+        this.pid=pid;
+        this.name=name;
+        this.age=age;
+        this.gen=gen;
+        this.add=add;
+        this.mn=mn;
+    }
+    void displayData()
+    {
+        System.out.println("PID: "+pid);
+        System.out.println("Name: "+name);
+        System.out.println("Age: "+age);
+        System.out.println("Gender: "+gen);
+        System.out.println("Address: "+add);
+        System.out.println("Mobile Number: "+mn);
+    }
+}
+class In_Patient extends Patient
+{
+    String rn;
+    double cf;
+    double tf;
+    String doa;
+    String dod;
+    int nod;
+    double rr;
+    In_Patient(String pid,String name,String age,String gen,String add,String mn,String rn,double cf,double tf,String doa,String dod,int nod,double rr)
+    {
+        super(pid,name,age,gen,add,mn);
+        this.rn=rn;
+        this.cf=cf;
+        this.tf=tf;
+        this.doa=doa;
+        this.dod=dod;
+        this.nod=nod;
+        this.rr=rr;
+    }
+    void displayData()
+    {
+        super.displayData();
+        System.out.println("Room Number: "+rn);
+        System.out.println("Consultation Fee: "+cf);
+        System.out.println("Test Fee: "+tf);
+        System.out.println("DOA: "+doa);
+        System.out.println("Discharge Date: "+dod);
+        System.out.println("Number of Days: "+nod);
+        System.out.println("Room Rent: "+rr);
+    }
+}
+class Bill extends In_Patient
+{
+    String dob;
+    Bill(String pid,String name,String age,String gen,String add,String mn,String rn,double cf,double tf,String doa,String dod,int nod,double rr,String dob)
+    {
+        super(pid,name,age,gen,add,mn,rn,cf,tf,doa,dod,nod,rr);
+        this.dob=dob;
+    }
+    void displayData()
+    {
+        super.displayData();
+        System.out.println("Date of bill: "+dob);
+    }
+    void calculateTotalBillAmount()
+    {
+        System.out.println("Total amount: "+(cf+tf+(nod*rr)));
+    }
+}
+class main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        String pid=sc.next();
+        String name=sc.next();
+        String age=sc.next();
+        String gen=sc.next();
+        String add=sc.next();
+        String mn=sc.next();
+        String rn=sc.next();
+        double cf=sc.nextDouble();
+        double tf=sc.nextDouble();
+        String doa=sc.next();
+        String dd=sc.next();
+        int nod=sc.nextInt();
+        double rr=sc.nextDouble();
+        String dob=sc.next();
+        Bill a=new Bill(pid,name,age,gen,add,mn,rn,cf,tf,doa,dd,nod,rr,dob);
+        a.displayData();
+        a.calculateTotalBillAmount();
+    }
+}
+
+constructor
+1...
+// You are using Java
+import java.util.*;
+class StallCategory
+{
+    String n;
+    String det;
+    StallCategory()
+    {
+        System.out.println("Using Default Constructor");
+    }
+    StallCategory(String n,String det)
+    {
+        this.n=n;
+        this.det=det;
+        System.out.println("Using Parameterized Constructor");
+    }
+    void print()
+    {
+        System.out.println(n+"\n"+det);
+    }
+}
+class main
+{
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String n=sc.next();
+        sc.nextLine();
+        String det=sc.nextLine();
+        StallCategory ne=new StallCategory();
+        StallCategory s=new StallCategory(n,det);
+        s.print();
+    }
+}
+
+2....
+// You are using Java
+import java.util.*;
+class temp
+{
+    String a;
+    int b;
+    String a1;
+    String b1;
+    int c;
+    temp()
+    {
+        System.out.println("Argentina Yesterday Temperature: 29\u00B0");
+    }
+    temp(String a,int b)
+    {
+        this.a=a;
+        this.b=b;
+        System.out.println(a+" Today Temperature: "+b+"\u00B0");
+    }
+    temp(String a1,String b1,int c)
+    {
+        this.a1=a1;
+        this.b1=b1;
+        this.c=c;
+        System.out.println(a1+" "+b1+" Temperature: "+c+"\u00B0");
+    }
+}
+class main
+{
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        String a=sc.next();
+        int b=sc.nextInt();
+        String a1=sc.next();
+        String b1=sc.next();
+        int c=sc.nextInt();
+        temp p=new temp();
+        temp x=new temp(a,b);
+        temp y=new temp(a1,b1,c);
+    }
+}
+
+3...
+// You are using Java
+import java.util.*;
+class Innings 
+{
+    private String BattingTeam;
+    private long runs;
+    public void setbattingTeam(String BattingTeam)
+    {
+        this.BattingTeam=BattingTeam;
+    }
+    public void setruns(long runs)
+    {
+        this.runs=runs;
+    }
+    public String getbattingTeam()
+    {
+        return BattingTeam;
+    }
+    public long getruns()
+    {
+        return runs;
+    }
+}
+public class Main
+{
+    public static void main(String [] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        Innings in[]=new Innings[2];
+        String team;
+        long runs;
+        for(int i=0;i<2;i++)
+        {
+            team=sc.next();
+            runs=sc.nextInt();
+            in[i]=new Innings();
+            in[i].setbattingTeam(team);
+            in[i].setruns(runs);
+            System.out.println("Innings "+(i+1)+" Details");
+            System.out.println("BattingTeam : "+in[i].getbattingTeam());
+            System.out.println("Runs scored : "+in[i].getruns());
+        }
+    }
+}
+
+polymorphism
+
+1..
+// You are using Java
+import java.util.*;
+
+class Main{
+   public double convert(double cel){
+       double d=(cel-32)*5/9;
+       return d;
+    }
+    public double convert(double far,boolean toCelsius){
+         double d=(far*9/5)+32;
+
+          return d;
+   }
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        double  a=s.nextDouble();
+        char f=s.next().charAt(0);
+        Main m=new Main();
+        
+        if(f=='F')
+        {
+            System.out.println(a+" "+f+" = "+m.convert(a)+" C");
+        }
+        else if(f=='C')
+        {
+            boolean toCelcius=true;
+            System.out.println(a+" "+f+" = "+m.convert(a,true)+" F");
+        }
+        
+    }
+}
+
+2..
+// You are using Java
+import java.util.*;
+class Gift
+{
+    private int amount;
+    Gift(int amt)
+    {
+        amount=amt;
+    }
+    int getamount()
+    {
+        return amount;
+    }
+    
+}
+class Mobile extends Gift
+{
+      Mobile(int amt)
+      {
+          super(amt);
+      }
+    
+}
+class Bike  extends Gift{
+      Bike(int amt)
+      {
+          super(amt);
+      }
+    
+}
+class Laptop  extends Gift{
+      Laptop(int amt)
+      {
+          super(amt);
+      }
+}
+class Main
+{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        int x=s.nextInt();
+        int y=s.nextInt();
+        Mobile m=new Mobile(x);
+        Laptop l=new Laptop(x);
+        Bike b=new Bike(y);
+        int tot=m.getamount()+l.getamount()+b.getamount();
+        System.out.println("Total amount of gifts: "+tot);
+        
+    }
+}
+// You are using Java
+import java.util.*;
+class Gift
+{
+   private  int a,b;
+   Gift(int a,int b)
+   {
+       this.a=a;
+       this.b=b;
+   }
+   int geta()
+   {
+       return a;
+   }
+   int getb()
+   {
+       return b;
+   }
+}
+class Mobile extends Gift
+{
+  Mobile(int a,int b)
+  {
+      super(a,b);
+  }
+}
+class Laptop extends Gift
+{
+    Laptop(int a,int b)
+    {
+        super(a,b);
+    }
+}
+class Bike extends Gift
+{
+    Bike(int a,int b)
+    {
+        super(a,b);
+    }
+    void display()
+    {
+        int ans=super.geta()+super.geta()+super.getb();
+     System.out.println("Total amount of gifts: "+(ans));
+    }
+}
+public class Main
+{
+public static void main(String[]args)
+{
+  Scanner sc=new Scanner(System.in);
+  int a=sc.nextInt();
+  int b=sc.nextInt();
+  Bike c=new Bike(a,b);
+  c.display();
+}
+}
+
+3..
+// You are usin
+import java.util.*;
+class PoolTable
+{
+    double l,w,ps;
+    
+    void calculatePerimeter(double l,double w)
+    {
+        this.l=l;
+        this.w=w;
+        System.out.printf("%.1f\n",2*(l+w));
+    }
+    void calculatePerimeter(double d)
+    {
+        ps=d;
+        System.out.printf("%.1f\n",Math.PI*ps);
+    }
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        double l=s.nextDouble();
+        double w=s.nextDouble();
+        double d=s.nextDouble();
+        PoolTable p=new PoolTable();
+        p.calculatePerimeter(l,w);
+        p.calculatePerimeter(d);
+    }
+}
+
+Regex
+
+1..
+// You are using Java
+import java.util.*;
+import java.util.regex.*;
+class Main{
+    public static void main(String arg[])
+    {
+        Scanner s=new Scanner(System.in);
+        String a=s.next();
+        Pattern p=Pattern.compile("^[7-9]"+"[0-9]{9}$");
+        Matcher m=p.matcher(a);
+        if(m.find())
+        {
+            System.out.println(a+" : Valid Number");
+        }
+        else
+        {
+            System.out.println(a+" : Invalid Number");
+        }
+    }
+}
+
+2..
+// You are using Java
+import java.util.*;
+import java.util.regex.*;
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        String a=s.next();
+        Pattern p=Pattern.compile(".[0-9]$");
+        Matcher m=p.matcher(a);
+        System.out.println(a);
+        if(m.find())
+        {
+            System.out.print("Found a match!");
+        }
+        else
+        {
+            System.out.print("Not matched!");
+        }
+    }
+}
+
+3...
+import java.util.*;
+import java.util.regex.*;
+
+class Main {
+    public static void main(String ar[]) {
+        Scanner s = new Scanner(System.in);
+        String a = s.nextLine();
+        
+        // Updated regex to ensure only allowed special characters are included.
+        String k = ("^(?=.[A-Z])(?=.[a-z])(?=.\\d)(?=.[@#$%&+=!]).{7,15}$");
+        
+        if (Pattern.matches(k, a)) {
+            System.out.println(a + " is a valid password");
+        } else {
+            System.out.println(a + " is a invalid password");
+        }
+        
+        s.close();
+    }
+}
+
+Collections
+
+1..
+// You are using Java
+import java.util.*;
+class Hall
+{
+    private String name;
+    private String  conum;
+    private Double costp;
+    private String owname;
+
+    Hall()
+    {
+        
+    }
+    Hall(String na,String cn,Double cp,String ow)
+    {
+        name=na;
+        conum=cn;
+        costp=cp;
+        owname=ow;
+    }
+    String geta()
+    {
+        return name;
+    }
+    String getb()
+    {
+        return conum;
+    }
+    Double getc()
+    {
+        return costp;
+    }
+    String getd()
+    {
+        return owname;
+    }
+    void display()
+    {
+        System.out.printf("%-20s%-20s%-20s%-20s",geta(),getb(),getc(),getd());
+        System.out.println();
+    }
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        s.nextLine();
+        if(n==0)
+        {
+            System.out.println("The list is empty");
+            return;
+        }
+        ArrayList<Hall> hl=new ArrayList<>();
+         for(int i=0;i<n;i++)
+         {
+            String na=s.nextLine();
+           
+             String co=s.nextLine();
+          
+            
+             Double c=s.nextDouble();
+             s.nextLine();
+           
+           String d=s.nextLine();
+    
+            hl.add(new Hall(na,co,c,d));
+           
+         }
+         int k=s.nextInt();
+         Hall h=new Hall();
+        System.out.printf("%-20s%-20s%-20s%-20s","Name","Contact Number","CostperDay","Owner Name");
+        System.out.println();
+        int i=0;
+        hl.remove(k);
+         for(Hall x: hl)
+         {
+            
+             
+           x.display();
+         }
+        
+        
+    }
+}
+// You are using J
+import java.util.*;
+class Hall
+{
+    private String name;
+    private String cn;
+    private Double cpd;
+    private String on;
+    Hall(String name,String cn,Double cpd,String on)
+    {
+        this.name=name;
+        this.cn=cn;
+        this.cpd=cpd;
+        this.on=on;
+    }
+    String getn()
+    {
+        return name;
+    }
+    String getc()
+    {
+        return cn;
+    }
+    Double getp()
+    {
+        return cpd;
+    }
+    String geto()
+    {
+        return on;
+    }
+    void display()
+    {
+        System.out.printf("\n%-20s%-20s%-20s%-20s",name,cn,cpd,on);
+    }
+}
+public class Main
+{
+    public static void main(String[]args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        ArrayList<Hall>list=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            String name=sc.nextLine();
+            String cn=sc.nextLine();
+            Double cpd=sc.nextDouble();
+            sc.nextLine();
+            String on=sc.nextLine();
+            list.add(new Hall(name,cn,cpd,on));
+        }
+        if(list.isEmpty())
+        {
+            System.out.println("The list is empty");
+            return;
+        }
+        int k=sc.nextInt();
+        System.out.printf("%-20s%-20s%-20s%-20s","Name","Contact Number","CostperDay","Owner Name");
+        for(int i=0;i<n;i++)
+        {
+            if(i==k)
+            {
+                list.remove(i);
+            }
+        }
+        for(Hall h:list)
+        {
+            h.display();
+        }
+    }
+}
+2..
+// You are using Java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Card implements Comparable<Card>
+{
+    String a;
+    int b;
+    Card(String a,int b)
+    {
+        this.a=a;
+        this.b=b;
+    }
+    void display()
+    {
+        System.out.println(a+" "+b);
+    }
+    public int compareTo(Card other)
+    {
+        return this.a.compareTo(other.a);
+    }
+    
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        TreeSet<Card>te=new TreeSet<>();
+        for(int i=0;i<=4;i++)
+        {
+           String a=s.next();
+           int b=s.nextInt();
+          
+         te.add(new Card(a,b));
+        }
+           
+        System.out.println("Four symbols gathered in 5 cards");
+        System.out.println("Cards in Set are:");
+        for(Card x:te)
+        {
+            x.display();
+        }
+        
+    }
+}
+
+3...
+// You are using Jav
+import java.util.*;
+class Main
+{
+    public  static void main(String ar[])
+{
+    Scanner s=new Scanner(System.in);
+    int n=s.nextInt();
+    TreeMap<Integer,Integer>tm=new TreeMap<>();
+
+    for(int i=0;i<n;i++)
+    {
+       int x=s.nextInt();
+       int y=s.nextInt();
+        tm.put(x,y);
+    }
+    System.out.println(tm);
+}
+}
+
+Exception handling
+1..
+// You are using Java
+import java.util.*;
+class User 
+{
+    private String name;
+    private String mob;
+    private String user;
+    private String pass;
+    User(String n,String m,String us,String pa)
+    {
+        name=n;
+        mob=m;
+        user=us;
+        pass=pa;
+    }
+    String geta()
+    {
+        return name;
+    }
+    String getb()
+    {
+        return mob;
+    }
+    String getc()
+    {
+        return user;
+    }
+    String getd()
+    {
+        return pass;
+    }
+   
+}
+class UserBo
+{
+    public  void validate(User u) throws Exception
+    {
+        String pas=u.getd();
+        
+        if((pas.length()<9 || pas.length()>=20))
+        {
+            throw new Exception("java.lang.Exception: Should be minimum of 10 characters and maximum of 20 characters");
+        }
+         if(!pas.matches(".[!@#$%^&].*"))
+        {
+            throw new Exception("java.lang.Exception: It should contain at least one special character");
+        }
+         if(!pas.matches(".[0-9]."))
+        {
+            throw new Exception("java.lang.Exception: Should contain at least one digit");
+        }
+    }
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        String na=s.nextLine();
+        String num=s.nextLine();
+        String us=s.nextLine();
+        String pass=s.nextLine();
+        User u=new User(na,num,us,pass);
+        UserBo Us=new UserBo();
+       try
+       {
+           Us.validate(u);
+           System.out.println("Valid Password");
+       }
+       catch(Exception e)
+       {
+           System.out.println(e.getMessage());
+           
+       }
+        
+    }
+}
+
+2..
+// You are using Jav
+import java.util.*;
+import java.io.*;
+class Contactdet{
+    public static void validate(String mobile, String alternateMobile) throws DuplicateMobileNumberException {
+    if (mobile.equals(alternateMobile)) {
+        throw new DuplicateMobileNumberException();
+    }
+  }
+}
+class ContactDetail {
+    String mobile;
+    String alternateMobile; 
+    String landLine;
+     String email;
+      String address;
+ public ContactDetail(String mobile, String alternateMobile, String landLine, String email, String address) {
+    this.mobile = mobile;
+    this.alternateMobile = alternateMobile;
+    this.landLine = landLine;
+    this.email = email;
+    this.address = address;
+    }
+     public String toString() {
+        return "Mobile: " + mobile + "\nAlternate mobile: " + alternateMobile + "\nLandLine: " + landLine + "\nEmail: " + email + "\nAddress: " + address;
+    }
+}
+ class DuplicateMobileNumberException extends Exception {
+    public DuplicateMobileNumberException() {
+        super("Mobile number and alternate mobile number are same");
+    }
+}   
+class Main
+{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        String sd=s.nextLine();
+        String arr[]=sd.split(",");
+         ContactDetail cd = new ContactDetail(arr[0], arr[1], arr[2], arr[3], arr[4]);
+           try {
+            //sauravhathi
+            Contactdet.validate(arr[0], arr[1]);
+            System.out.println(cd);
+        } catch (DuplicateMobileNumberException e) {
+            System.out.println("DuplicateMobileNumberException: " + e.getMessage());
+        }
+        
+    }
+}
+SWINS
+1)package Swings;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Swings extends JFrame implements ActionListener {
+
+private JTextField display;
+
+private String operator;
+private double num1, num2, result;
+
+public Swings() {
+setTitle("Simple Calculator");
+setSize(400, 500);
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setLayout(new BorderLayout());
+
+// Create the display field
+display = new JTextField();
+display.setEditable(false); // Read-only
+display.setFont(new Font("Arial", Font.BOLD, 24));
+add(display, BorderLayout.NORTH);
+
+// Create the panel for buttons
+JPanel panel = new JPanel();
+panel.setLayout(new GridLayout(4, 4, 10, 10)); // 4x4 Grid
+
+// Create buttons for digits and operators
+String[] buttons = {
+"7", "8", "9", "/",
+"4", "5", "6", "*",
+"1", "2", "3", "-",
+"0", "=", "+", "C"
+};
+
+// Add buttons to the panel
+for (String text : buttons) {
+JButton button = new JButton(text);
+button.setFont(new Font("Arial", Font.BOLD, 20));
+button.addActionListener(this);
+panel.add(button);
+}
+
+// Add the panel to the window
+add(panel, BorderLayout.CENTER);
+
+// Set the window visible
+setVisible(true);
+}
+
+// Handle button clicks
+@Override
+public void actionPerformed(ActionEvent e) {
+String command = e.getActionCommand();
+
+if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
+// If a digit is clicked, append it to the display
+display.setText(display.getText() + command);
+} else if (command.equals("+") || command.equals("-") || command.equals("*") || command.equals("/")) {
+// If an operator is clicked, store the first operand and operator
+num1 = Double.parseDouble(display.getText());
+operator = command;
+display.setText(""); // Clear display for the next number
+} else if (command.equals("=")) {
+// If equals is clicked, perform the calculation
+num2 = Double.parseDouble(display.getText());
+
+switch (operator) {
+case "+":
+result = num1 + num2;
+break;
+case "-":
+result = num1 - num2;
+break;
+case "*":
+result = num1 * num2;
+break;
+case "/":
+result = num1 / num2;
+break;
+}
+display.setText(String.valueOf(result)); // Display the result
+} else if (command.equals("C")) {
+// If clear is clicked, reset everything
+display.setText("");
+num1 = num2 = result = 0;
+}
+}
+
+public static void main(String[] args) {
+new Swings();
+}
+}
+2)package Swings;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Swings extends JFrame {
+    private JRadioButton yesClearContent, noClearContent;
+    private JRadioButton yesClearDoubts, noClearDoubts;
+    private JRadioButton yesInteractive, noInteractive;
+    private JTextField ratingField;
+    private JButton submitButton;
+
+    public Swings() {
+        // Set up the frame
+        setTitle("IRC Trainer Feedback");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(5, 2, 10, 10));
+
+        // Components for "Were the contents delivered clearly by the trainer?"
+        add(new JLabel("Were the contents delivered clearly by the trainer:"));
+        JPanel clearContentPanel = new JPanel();
+        yesClearContent = new JRadioButton("Yes");
+        noClearContent = new JRadioButton("No");
+        ButtonGroup clearContentGroup = new ButtonGroup();
+        clearContentGroup.add(yesClearContent);
+        clearContentGroup.add(noClearContent);
+        clearContentPanel.add(yesClearContent);
+        clearContentPanel.add(noClearContent);
+        add(clearContentPanel);
+
+        // Components for "Do the trainers clear all your doubts?"
+        add(new JLabel("Do the trainers clear all your doubts:"));
+        JPanel clearDoubtsPanel = new JPanel();
+        yesClearDoubts = new JRadioButton("Yes");
+        noClearDoubts = new JRadioButton("No");
+        ButtonGroup clearDoubtsGroup = new ButtonGroup();
+        clearDoubtsGroup.add(yesClearDoubts);
+        clearDoubtsGroup.add(noClearDoubts);
+        clearDoubtsPanel.add(yesClearDoubts);
+        clearDoubtsPanel.add(noClearDoubts);
+        add(clearDoubtsPanel);
+
+        // Components for "Do the trainer is interactive?"
+        add(new JLabel("Do the trainer is interactive:"));
+        JPanel interactivePanel = new JPanel();
+        yesInteractive = new JRadioButton("Yes");
+        noInteractive = new JRadioButton("No");
+        ButtonGroup interactiveGroup = new ButtonGroup();
+        interactiveGroup.add(yesInteractive);
+        interactiveGroup.add(noInteractive);
+        interactivePanel.add(yesInteractive);
+        interactivePanel.add(noInteractive);
+        add(interactivePanel);
+
+        // Components for "Rate the trainer on a scale of 1 to 10"
+        add(new JLabel("Rate the trainer on a scale of 1 to 10:"));
+        ratingField = new JTextField(5);
+        add(ratingField);
+
+        // Submit button
+        submitButton = new JButton("Submit");
+        add(submitButton);
+
+        // Event listener for the submit button
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Get the values from the form
+                String clearContent = yesClearContent.isSelected() ? "Yes" : "No";
+                String clearDoubts = yesClearDoubts.isSelected() ? "Yes" : "No";
+                String interactive = yesInteractive.isSelected() ? "Yes" : "No";
+                String rating = ratingField.getText();
+
+                // Display feedback summary
+                JOptionPane.showMessageDialog(Swings.this,
+                        "Feedback Summary:\n" +
+                                "Contents Delivered Clearly: " + clearContent + "\n" +
+                                "Doubts Cleared: " + clearDoubts + "\n" +
+                                "Interactive Trainer: " + interactive + "\n" +
+                                "Rating: " + rating);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        // Run the form
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Swings().setVisible(true);
+            }
+        });
+    }
+}
+3)package Swings;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Swings extends JFrame {
+    private JTextField nameField, regnoField, cgpaField;
+    private JCheckBox maleCheckBox, femaleCheckBox;
+    private JButton submitButton;
+
+    public Swings() {
+        // Set up the frame
+        setTitle("Student Form");
+        setSize(300, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(5, 2, 10, 10));
+
+        // Components for Name
+        add(new JLabel("Name:"));
+        nameField = new JTextField();
+        add(nameField);
+
+        // Components for Regno
+        add(new JLabel("Regno:"));
+        regnoField = new JTextField();
+        add(regnoField);
+
+        // Components for CGPA
+        add(new JLabel("CGPA:"));
+        cgpaField = new JTextField();
+        add(cgpaField);
+
+        // Components for Gender
+        add(new JLabel("Gender:"));
+        JPanel genderPanel = new JPanel();
+        maleCheckBox = new JCheckBox("Male");
+        femaleCheckBox = new JCheckBox("Female");
+        genderPanel.add(maleCheckBox);
+        genderPanel.add(femaleCheckBox);
+        add(genderPanel);
+
+        // Submit button
+        submitButton = new JButton("Submit");
+        add(submitButton);
+
+        // Empty label to fill grid
+        add(new JLabel());
+
+        // Event listener for the submit button
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Display a welcome message
+                JOptionPane.showMessageDialog(Swings.this, "Welcome!");
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        // Run the form
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Swings().setVisible(true);
+            }
+        });
+    }
+}// You are using Java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Card implements Comparable<Card>
+{
+    String a;
+    int b;
+    Card(String a,int b)
+    {
+        this.a=a;
+        this.b=b;
+    }
+    void display()
+    {
+        System.out.println(a+" "+b);
+    }
+    public int compareTo(Card other)
+    {
+        return this.a.compareTo(other.a);
+    }
+    
+}
+class Main{
+    public static void main(String ar[])
+    {
+        Scanner s=new Scanner(System.in);
+        TreeSet<Card>te=new TreeSet<>();
+        for(int i=0;i<=4;i++)
+        {
+           String a=s.next();
+           int b=s.nextInt();
+           te.add(new Card(a,b));
+           c++; 
+        }
+           
+        System.out.println("Four symbols gathered in "+c+" cards");
+        System.out.println("Cards in Set are:");
+        for(Card x:te)
+        {
+            x.display();
+        }
+        
+    }
+}
+

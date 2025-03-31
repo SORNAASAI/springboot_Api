@@ -1,0 +1,336 @@
+
+<h1>29)</h1><html>
+    <head>
+        <style>
+            .dotted
+            {
+                border-style:dotted;
+            }
+            .dashed
+            {
+                border-style: dashed;
+            }
+            .solid
+            {
+                border-style: solid;
+            }
+            .double
+            {
+                border-style: double;
+            }
+            .groove
+            {
+                border-style:groove;
+            }
+            .ridge
+            {
+                border-style: ridge;
+            }
+            .inset
+            {
+                border-style:inset;
+            }.outset
+            {
+                border-style: outset;
+            }.noborder
+
+            {
+                border-style: none;
+            }.hidden
+            {
+                border-style: hidden;
+            }
+            .mixed
+            {
+                border-style:dotted dashed solid double;
+            }
+            
+        </style>
+    </head>
+    <body>
+    <p class ="dotted">A dotted border</p>
+    <p class="dashed">A dashed border</p>
+    <p class="solid">A solid border</p>
+    <p class="double">A double border</p>
+    <p class=" groove">A groove border</p>
+    <p class="ridge">A ridge border</p>
+    <p class="inset">A inset border</p>
+    <p class="outset">A outset border</p>
+    <p class="noborder">No border</p>
+    <p class="hidden">hidden border</p>
+    <p class="mixed">mixed border</p>
+    </body>
+    </html>
+    <h1>32)</h1>
+    <html>
+        <head></head>
+        <body>
+            <ol>
+                <li>Wedding
+                    <ol>
+                        <li>Bridal party</li>
+                        <li>Engagement parties</li>
+                        <li>Carter</li>
+                        <li>Wedding ceremony</li>
+                        <li>Wedding reception</li>
+                        </ol></li>
+                <li>Corporate
+                    <ol>
+                        <li>Engagement parties</li>
+                        <li>Appreciation Events</li>
+                        <li>Team Building Events</li>
+                        <li>Product Launch Events</li>
+                        <li>Shareholder Meetings</li>
+                    </ol>
+                </li>
+                <li>Exhibtion
+                    <ol>
+                        <li>aerophilately</li>
+                        <li>astrophilately</li>
+                        <li>fight against forgeries</li>
+                        <li>maximaphily</li>
+                        <li>Philatelic literature</li>
+                    </ol>
+                </li>
+                <li>Trade Shows
+                    <ol>
+                        <li>Argentina</li>
+                        <li>Bolivia</li>
+                        <li>Brazil</li>
+                        <li>Canada</li>
+                        <li>Chile</li>
+                    </ol>
+                </li>
+                <li>Stage Events
+                    <ol>
+                        <li>Birthday party</li>
+                        <li>Surprise party</li>
+                        <li>Dinner party</li>
+                        <li>Gardern party</li>
+                        <li>Coctail party</li>
+                    </ol>
+                </li>
+            </ol>
+        </body>
+    </html>
+    <h1>33)
+    </h1>
+    <html>
+        <head>
+            <title>
+
+            </title>
+        </head><body>
+            <p><b>Lorem</b>, <i>ipsum dolor,</i>sit amet consectetur <em>adipisicing elit</em>. ,<strong>Fugiat</strong> atque ducimus <u>facilis </u>issimos nobis quia similique esse mollitia cum voluptatem.</p><br>
+            <table border="">
+                <tr>
+                <th>The planets</th>
+                <th>The oceans</th>
+                <th>The desserts</th>
+                </tr>
+                <tr>
+                
+                   <td>earth </td>
+                   <td>pacific</td>
+                   <td>sahara</td>
+                   </tr>
+                   <tr>
+                    <td>plato</td>
+                    <td>atlantic</td>
+                    <td>gobi</td>
+                   </tr>
+                   <tr>
+                    <td>mars</td>
+                    <td>indian</td>
+                    <td>thar</td>
+                   </tr>
+            </table>
+        </body>
+    </html>
+  <h1>34)</h1> 
+<html>
+    <head>
+    </head>
+    <body>
+        <form>
+            <fieldset>
+                <legend>
+                    Personal details
+                </legend>
+        
+                <label >Salutation</label><br>
+
+                <select id="none"name="no">
+                    <option value="none">None</option>
+                </select><br>
+                <label >First name:</label>
+                <input type="text"><br><br>
+                <label>Last name:</label>
+                <input type="text"><br><br>
+                <label >Gender:</label>
+                
+                <input type="radio" name="sor" id="male"value="male">
+                <label for="male">Male</label>
+                <input type="radio"name="sor" id="female"value="female">
+                <label for="female">Female</label><br><br>
+                <label>Email:</label>
+                <input type="email"><br><br>
+                <label>Date of Birth</label>
+                <input type="Date"><br><br>
+                <label>Address</label><br>
+                <textarea cols="20"rows="3"></textarea><br><br>
+                <input type="submit" value="submit">
+
+            </fieldset>
+        </form>
+    </body>
+</html> 
+<h1>35),36)</h1>
+<html>
+    <head>
+<style>
+    .grid
+    {
+        grid-template-columns:auto auto auto auto auto auto auto auto;
+        display:grid;
+       
+        border-top:4px solid grey;
+        border-right:4px solid grey;
+        border-left:4px solid grey;
+        width: 400px;
+        height:400px;
+        
+    }
+    .white
+    {
+        background-color:white;
+        height:50px;
+    }
+    .black
+    {
+        background-color:black;
+        height:50px;
+    }
+</style>
+    </head>
+    <body>
+        <div class="grid">
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            
+            
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            
+
+            
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            
+            
+
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            
+
+            
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            
+
+            
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="white"></div>
+            
+        </div>
+    </body>
+</html>
+<h2>37)</h2>
+<html>
+    <head>
+        <style>
+            .table
+            {
+                text-align:center;
+                
+            }
+            td
+            {
+                padding:10px;
+            }
+        </style>
+
+    </head>
+    <body>
+      <table class="table"border="">
+        <tr>
+            <td colspan="3">&lt;header &gt;</td>
+        </tr>
+         <tr>
+            <td colspan="3">&lt;nav&gt;</td>
+         </tr> 
+         <tr>
+            <td >&lt;section&gt;</td>
+            <td rowspan="2">&lt;aside&gt;</td>
+         </tr> 
+         <tr>
+            <td >&lt;article&gt;</td>
+         </tr> 
+         <tr>
+            <td colspan="3">&lt;footer&gt;</td>
+         </tr>          
+      </table>

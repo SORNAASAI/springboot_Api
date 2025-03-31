@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aliceblue;
+        }
+        .grid
+        {
+            display:grid;
+            grid-template-rows: 4% 10% 15% 30% 4% 30% 20%;
+        }
+        .sub
+        {
+            background-color: aliceblue;
+            
+        }
+        .home
+        {
+            background-color: black;
+            color:white;
+                    padding-bottom: 60px;
+        }
+        #name
+        { display: inline-flex;
+        padding-right: 900px;
+    color:red;}
+        #l
+        {
+            display:inline-flex;
+            padding:5px;
+        }
+        #perfect
+        {
+text-decoration: line-through;
+text-align: center;
+padding-left: 100px;
+font-size:xx-large;
+        }
+        #pra
+        {
+text-align: center;
+font-size:xx-large;
+margin: -24px;
+        }
+        .aboutus
+        {
+            background-color: aliceblue;
+            padding-left: 200px;;
+        }
+        .achievement
+        {
+            background-color: black;
+            color:white;
+        }
+             
+                hr{
+            width:450px;
+        }
+        .divi
+        {
+            display: grid;
+            grid-template-columns:2fr 2fr 2fr;
+            padding-top:10px;
+            padding-left: 100px;
+            
+        }
+        .div1
+        {
+            background-color: white;
+            color: black;
+            width:250px;
+            height:200px;
+            border-radius: 20px;
+            
+            
+        }
+        .div2
+        {
+            background-color:white;
+            color:black;
+            width:250px;
+            height:200px;
+            border-radius:20px;
+        }
+        .div3
+        {
+            background-color: white;
+            color:black;
+            width:250px;
+            height:200px;
+            border-radius:20px;
+            text-align: center;
+        }
+        .skill
+        {
+            background-color: aliceblue;
+            display:grid;
+            grid-template-columns: 2fr 2fr;
+            padding-left: 200px;
+            padding-bottom: 200px;
+        }
+        
+        .contact
+        {
+            background-color: black;
+            color:white;
+            text-align: center;
+        }
+        h3{padding-left: 700px;}
+    #para
+    {padding-left:650px;}
+    #sk
+    {
+        text-align: center;
+    }
+        
+    </style>
+</head>
+<body>
+    <div class="grid">
+    <div class="sub">
+        <ul type="none">
+            <li id="name">Name</li>
+            <li id="l">Home</li>
+            <li id="l">Aboutus</li>
+            <li id="l">Achievements</li>
+            <li id="l">Skills</li>
+            <li id="l">Contact</li>
+        </ul>
+    </div>
+    <div class="home">
+        <p id="perfect">Practice Makes Perfect</p>
+        <p id="pra">Perfect Practice Makes Perfect</p>
+    </div>
+    <div class="aboutus">
+        <h2>Name</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque inventore consequuntur totam numquam voluptate impedit expedita beatae et nesciunt nihil!</p>
+    </div>
+    <div class="achievement">
+        <span>
+        <h3>Achievements</h3>
+        <p id="para">some of my best projects so far</p><hr>
+</span>
+<div class="divi">
+    <div class="div1">
+        <h4>School Cricket Team Captain</h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore, voluptates.</p>
+    </div>
+    <div class="div2">
+        <h4>School First</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, molestias?</p>
+    </div>
+    <div class="div3">
+        <h4>YouTuber</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, cupiditate?</p>
+    </div>
+</div>
+    </div>
+    <span> <h2 id="sk">Skills</h2></span>
+    <div class="skill">      
+<div class="tech">
+<h4>Technical Skills</h4>
+<p>HTML</p>
+<progress max="100"value="80"></progress>
+<p>CSS</p>
+<progress max="100"value="70"></progress>
+
+<p>Javascript</p>
+<progress max="100"value="60"></progress>
+<p>C++</p>
+<progress max="100"value="90"></progress>
+<p>Java</p>
+<progress max="100"value="80"></progress>
+</div>
+<div class="lang">
+<h4>Language Skills</h4>
+<p>English</p>
+<progress max="100 "value="80"></progress>
+<p>Tamil</p>
+<progress max="100"value="98"></progress>
+<p>Hindi</p>
+<progress max="100"value="60"></progress>
+<p>Telugu</p>
+<progress max="100"value="40"></progress>
+<p>Malayalam</p>
+<progress max="100"value="35"></progress>
+</div>
+    </div>
+    <div class="contact">
+        <h4>Contact</h4>
+        <input type="text"placeholder="ENTER YOUR NAME"><br><br>
+        <input type="text"placeholder="ENTER YOUR EMAIL"><br><br>
+        <input type="text"placeholder="ENTER YOUR MESSAGE"><br><br>
+<button type="sumbit">SEND MESSAGE</button>
+    </div>
+    </div>
+</body>
+</html>

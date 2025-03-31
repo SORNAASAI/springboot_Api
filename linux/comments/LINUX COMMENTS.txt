@@ -1,0 +1,212 @@
+1)
+~$ read a
+Sornaa
+~$ read b
+19
+~$ echo $a $b
+Sornaa 19
+~$ 
+
+2)
+~$ read a
+10
+~$ read b
+20
+~$ sum=$(( $a + $b ))
+~$ echo $sum
+30
+~$ 
+
+3)
+~$ read a
+20
+~$ read b
+10
+~$ read op
+*
+~$ case $op in
+> +)
+> result=$(( $a + $b ))
+> echo $result
+> ;;
+> -)
+> result=$(( $a - $b ))
+> echo $result
+> ;;
+> \*)
+> result=$(( $a * $b ))
+> echo $result
+> ;;
+> /)
+> result=$(( $a / $b ))
+> echo $result
+> ;;
+> %)
+> result=$(( $a % $b ))
+> echo $result
+> ;;
+> *)
+> echo "The operation is not present"
+> esac
+200
+~$ 
+4)
+$ read n
+5
+~$ fact=1
+~$ for((i=2;i<=n;i++))
+> {
+> fact=$(( $fact * i ))
+> }
+~$ echo $fact
+120
+~$ 
+5)
+~$ read n
+135
+~$ s=0
+~$ while [ $n -gt 0 ]
+> do
+> k=$(( $n % 10 ))
+> n=$(( $n / 10 ))
+> s=$(( $s + $k ))
+> done
+~$ echo $s
+9
+~$ 
+6)
+~$ var="Sornaa"
+~$ var1="Sai"
+~$ if [ "$var" ="$var1" ]; then
+> echo "String are equal"
+> else
+> echo "String are not equal"
+> fi
+bash: [: Sornaa: unary operator expected
+String are not equal
+~$ 
+7)
+~$ a=(45 77 44 25 66 )
+~$ n=${#a[@]}
+~$ min=${a[0]}
+~$ max=${a[0]}
+~$ for(( i=1;i<n;i++ ))
+> do
+> if [ ${a[i]} -lt $min ]
+> then
+> min=${a[i]}
+> fi
+> if [ ${a[i]} -gt $max ]
+> then
+> max=${a[i]}
+> fi
+> done
+~$ echo $min $max
+25 77
+~$ 
+
+
+8)
+~$ read n
+60
+~$ read m
+60
+~$ read o
+60
+~$ if [ "$n" == "$m" ]&&[ "$m" == "$o"]&&[ "$o" == "$n" ]; then
+> echo "The triangle is equalatorial"
+> elif [ "$n" == "$m" ]||[ "$m" == "$o" ]||[ "$o" == "$n" ]; then
+> echo "The triangle is isoceles"
+> else
+> echo "The triangle is scalene"
+> fi
+bash: [: missing `]'
+The triangle is isoceles
+~$ 
+
+9)
+~$ read str
+chocolate 
+~$ revstr=$(echo "$str" |rev)
+~$ echo "$revstr"
+etalocohc
+~$ if [ "$str" == "$revstr" ];then
+> echo "The String is palindrome"
+> else 
+> echo "The STring is not palindrom"
+> fi
+The STring is not palindrom
+~$ 
+
+10)
+~$ read n
+5
+~$ read -a ar
+66 55 44 8 3 
+~$ for (( i=0;i<n;i++ )); do
+> for (( j=0;j<n-i-1;j++ )); do
+> if (( ar[j] >ar[j+1] )); then
+> t=${ar[j]}
+> ar[j]=${ar[j+1]}
+> ar[j+1]=$t
+> fi
+> done
+> done
+~$ echo "${ar[@]}"
+3 8 44 55 66
+~$ 
+
+
+
+10)
+wrong
+~$ read -a ar
+5 6 3 1 9
+~$ echo "${ar[@]}"
+5 6 3 1 9
+~$ for (( i=0;i<n;i++ )); do
+> for (( j=0;j<n-i-1;j++ )); do
+> if [ a[j] > a[j+1] ]; then
+> t=${a[j]}
+> a[j]=${a[j+1]}
+> a[j+1]=$t
+> fi
+> done
+> done
+~$ echo "${ar[@]}"
+5 6 3 1 9
+3)
+~$ read a
+20
+~$ raed b
+bash: raed: command not found
+~$ read b
+10
+~$ read op
+/
+~$ case $op in
+> 1) 
+> result=$(( $a + $b ))
+> echo $result
+> ;;
+> 2)
+> result=$(( $a - $b ))
+> echo $result
+> ;;
+> 3)
+> result=$(( $a * $b ))
+> echo $result
+> ;;
+> 4)
+> result=$(( $a / $b ))
+> echo $result
+> ;;
+> 5)
+> result = $(( $a % $b ))
+> echo $result
+> ;;
+> *)
+> echo "The operation is not present"
+> esac
+The operation is not present
+~$ 

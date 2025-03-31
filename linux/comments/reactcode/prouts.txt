@@ -1,0 +1,1179 @@
+
+import React, { useState } from 'react';
+import { Checkbox, FormControlLabel, FormGroup, Collapse, Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+
+function Sprouts() {
+  const [ratings, setRatings] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
+  const [cartItems, setCartItems] = useState([]); // State to keep track of cart items
+  const [selectedCategory, setSelectedCategory] = useState('Cut Fruit, Tender Coconut'); // State to keep track of selected category
+
+  // Handle rating filter change
+  const handleRatingChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setRatings([...ratings, value]);
+    } else {
+      setRatings(ratings.filter((rating) => rating !== value));
+    }
+  };
+
+  // Handle brand filter change
+  const handleBrandChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedBrands([...selectedBrands, value]);
+    } else {
+      setSelectedBrands(selectedBrands.filter((brand) => brand !== value));
+    }
+  };
+
+  // Toggle Category Dropdown
+  const toggleCategory = () => {
+    setIsCategoryOpen(!isCategoryOpen);
+  };
+
+  // Sample data for products for each category
+  const productsByCategory = {
+    'Cut Fruit, Tender Coconut': [
+      {
+        name: 'Sugar Palm Fruit',
+        price: 43,
+        discountPrice: 27,
+        image: 'https://media.istockphoto.com/id/1145647664/photo/palmyra-palm-toddy-palm-or-sugar-palm-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=0k_VGqmRrt7u_sW-U3a9ZQbaWmoJBFtwwT32PTeZXk4=',
+        discount: '25% OFF'
+      },
+      {
+        name: 'Tender Coconut',
+        price: 70,
+        discountPrice: 50,
+        image: 'https://t4.ftcdn.net/jpg/02/26/28/13/360_F_226281364_GhAtxY8Q3ibW9vnKjdtarBEY2fDxXB6e.jpg',
+        discount: '25% OFF'
+      },
+      {
+        name: 'Jackfruit - Peeled,250g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://img.freepik.com/premium-photo/peeled-jackfruit-white-plate-isolated-white-background_127755-1683.jpg',
+        discount: '15% OFF'
+
+      },
+      {
+        name: 'Pomegranate - Peeled, 200 g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://m.media-amazon.com/images/I/517oHZ30qrL.jpg',
+        discount: '30% OFF'
+
+      },
+      {
+        name: 'Sugarcane - Diced, 200 g ',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://www.bigbasket.com/media/uploads/p/xxl/40018977-2_1-fresho-sugarcane-diced.jpg',
+        discount: '30% OFF'
+
+      }
+    ],
+    'Cut & Peeled Veggies': [
+      {
+        name: 'Garlic - Peeled, 200 g',
+        price: 80,
+        discountPrice: 70,
+        image: 'https://www.jiomart.com/images/product/original/rvfnqqqyas/momsy-premium-fresh-peeled-garlic-clove-250-grams-product-images-orvfnqqqyas-p603471100-1-202308012310.jpg?im=Resize=(420,420)',
+        discount: '12% OFF'
+      },
+      {
+        name: ' Frozen Green Peas, 500 g Pouch',
+        price: 200,
+        discountPrice: 150,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40316895_1-home-fresh-frozen-green-peas.jpg',
+        discount: '25% OFF'
+      }
+    ],
+    'Fresh Juices & Milkshakes': [
+      {
+        name: 'Mango Juice',
+        price: 150,
+        discountPrice: 120,
+        image: 'https://img.freepik.com/premium-photo/mango-milkshake-white-background_1111059-13088.jpg',
+        discount: '20% OFF'
+      },
+      {
+        name: 'Strawberry Milkshake',
+        price: 180,
+        discountPrice: 160,
+        image: 'https://img.freepik.com/premium-photo/glass-strawberry-milkshake-isolated-white-background_185193-46813.jpg',
+        discount: '11% OFF'
+      }
+    ],
+    'Fresh Salads & Sprouts': [
+      {
+        name: 'Organic Sprouts Moong Green, 150 g',
+        price: 100,
+        discountPrice: 80,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292145_3-fresho-organic-sprouts-moong-green.jpg',
+        discount: '20% OFF'
+      },
+      {
+        name: 'Organic Sprouts Mixed Gram, 150 g',
+        price: 140,
+        discountPrice: 120,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292148_3-fresho-organic-sprouts-mixed-gram.jpg',
+        discount: '15% OFF'
+      }
+    ],
+   
+    
+  };
+
+  // Handle add to cart
+  const handleAddToCart = (product) => {
+    setCartItems([...cartItems, product]); // Add the selected product to the cart
+    alert(`${product.name} added to cart!`);
+  };
+
+  // Component for displaying each product card
+  const ProductCard = ({ product }) => (
+    <Card style={{ width: '200px', margin: '10px' }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={product.image}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography variant="h6" component="div">
+          {product.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <b>₹{product.discountPrice}</b> <span style={{ textDecoration: 'line-through' }}>₹{product.price}</span>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.discount}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginTop: '10px' }}
+          onClick={() => handleAddToCart(product)}
+        >
+          Add to Cart
+        </Button>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <div style={{ display: 'flex', margin: '20px' }}>
+      {/* Filter Sidebar */}
+      <div style={{ width: '20%', paddingRight: '20px', borderRight: '1px solid lightgray' }}>
+        {/* Category Dropdown */}
+        <h4 style={{ cursor: 'pointer', color: 'green' }} onClick={toggleCategory}>
+          Shop by Category
+        </h4>
+        <Collapse in={isCategoryOpen}>
+          <div style={{ paddingLeft: '10px' }}>
+            <p style={{ marginBottom: '10px' }}><b>Fruits & Vegetables</b></p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              <li style={{ paddingBottom: '10px' }}><b>Cuts & Sprouts</b></li>
+              <ul style={{ listStyleType: 'none', paddingLeft: '10px', paddingBottom: '10px' }}>
+                {Object.keys(productsByCategory).map((category) => (
+                  <li
+                    key={category}
+                    style={{ paddingBottom: '10px', cursor: 'pointer', color: selectedCategory === category ? 'green' : 'black' }}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+            </ul>
+          </div>
+        </Collapse>
+
+        {/* Product Rating Filter */}
+        <h4>Refined by</h4>
+        <h5>Product Rating</h5>
+        <FormGroup>
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <FormControlLabel
+              key={rating}
+              control={
+                <Checkbox
+                  value={rating}
+                  checked={ratings.includes(String(rating))}
+                  onChange={handleRatingChange}
+                />
+              }
+              label={
+                <span>
+                  {Array.from({ length: rating }, (_, i) => (
+                    <span key={i}>⭐</span>
+                  ))}
+                </span>
+              }
+            />
+          ))}
+        </FormGroup>
+
+        {/* Brand Filter */}
+        <h5>Brands</h5>
+        <FormGroup>
+          {['Ambrosia', 'bb Combo', 'Farmogo', 'Farm Fresh', 'Sprout Masters'].map((brand) => (
+            <FormControlLabel
+              key={brand}
+              control={
+                <Checkbox
+                  value={brand}
+                  checked={selectedBrands.includes(brand)}
+                  onChange={handleBrandChange}
+                />
+              }
+              label={brand}
+            />
+          ))}
+        </FormGroup>
+      </div>
+
+      {/* Product Grid */}
+      <div style={{ width: '80%', paddingLeft: '20px' }}>
+        <h3>{selectedCategory}</h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {productsByCategory[selectedCategory].map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Sprouts;
+
+
+
+
+
+
+import React, { useState } from 'react';
+import { Checkbox, FormControlLabel, FormGroup, Collapse, Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+
+function Sprouts() {
+  const [ratings, setRatings] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
+  const [cartItems, setCartItems] = useState([]); // State to keep track of cart items
+  const [selectedCategory, setSelectedCategory] = useState('Cut Fruit, Tender Coconut'); // State to keep track of selected category
+
+  // Handle rating filter change
+  const handleRatingChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setRatings([...ratings, value]);
+    } else {
+      setRatings(ratings.filter((rating) => rating !== value));
+    }
+  };
+
+  // Handle brand filter change
+  const handleBrandChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedBrands([...selectedBrands, value]);
+    } else {
+      setSelectedBrands(selectedBrands.filter((brand) => brand !== value));
+    }
+  };
+
+  // Toggle Category Dropdown
+  const toggleCategory = () => {
+    setIsCategoryOpen(!isCategoryOpen);
+  };
+
+  // Sample data for products for each category
+  const productsByCategory = {
+    'Cut Fruit, Tender Coconut': [
+      {
+        name: 'Sugar Palm Fruit',
+        price: 43,
+        discountPrice: 27,
+        image: 'https://media.istockphoto.com/id/1145647664/photo/palmyra-palm-toddy-palm-or-sugar-palm-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=0k_VGqmRrt7u_sW-U3a9ZQbaWmoJBFtwwT32PTeZXk4=',
+        discount: '25% OFF'
+      },
+      {
+        name: 'Tender Coconut',
+        price: 70,
+        discountPrice: 50,
+        image: 'https://t4.ftcdn.net/jpg/02/26/28/13/360_F_226281364_GhAtxY8Q3ibW9vnKjdtarBEY2fDxXB6e.jpg',
+        discount: '25% OFF'
+      },
+      {
+        name: 'Jackfruit - Peeled,250g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://img.freepik.com/premium-photo/peeled-jackfruit-white-plate-isolated-white-background_127755-1683.jpg',
+        discount: '15% OFF'
+
+      },
+      {
+        name: 'Pomegranate - Peeled, 200 g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://m.media-amazon.com/images/I/517oHZ30qrL.jpg',
+        discount: '30% OFF'
+
+      },
+      {
+        name: 'Sugarcane - Diced, 200 g ',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://www.bigbasket.com/media/uploads/p/xxl/40018977-2_1-fresho-sugarcane-diced.jpg',
+        discount: '30% OFF'
+
+      }
+    ],
+    'Cut & Peeled Veggies': [
+      {
+        name: 'Garlic - Peeled, 200 g',
+        price: 80,
+        discountPrice: 70,
+        image: 'https://www.jiomart.com/images/product/original/rvfnqqqyas/momsy-premium-fresh-peeled-garlic-clove-250-grams-product-images-orvfnqqqyas-p603471100-1-202308012310.jpg?im=Resize=(420,420)',
+        discount: '12% OFF'
+      },
+      {
+        name: ' Frozen Green Peas, 500 g Pouch',
+        price: 200,
+        discountPrice: 150,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40316895_1-home-fresh-frozen-green-peas.jpg',
+        discount: '25% OFF'
+      }
+    ],
+    'Fresh Juices & Milkshakes': [
+      {
+        name: 'Mango Juice',
+        price: 150,
+        discountPrice: 120,
+        image: 'https://img.freepik.com/premium-photo/mango-milkshake-white-background_1111059-13088.jpg',
+        discount: '20% OFF'
+      },
+      {
+        name: 'Strawberry Milkshake',
+        price: 180,
+        discountPrice: 160,
+        image: 'https://img.freepik.com/premium-photo/glass-strawberry-milkshake-isolated-white-background_185193-46813.jpg',
+        discount: '11% OFF'
+      }
+    ],
+    'Fresh Salads & Sprouts': [
+      {
+        name: 'Organic Sprouts Moong Green, 150 g',
+        price: 100,
+        discountPrice: 80,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292145_3-fresho-organic-sprouts-moong-green.jpg',
+        discount: '20% OFF'
+      },
+      {
+        name: 'Organic Sprouts Mixed Gram, 150 g',
+        price: 140,
+        discountPrice: 120,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292148_3-fresho-organic-sprouts-mixed-gram.jpg',
+        discount: '15% OFF'
+      }
+    ],
+   
+    
+  };
+
+  // Handle add to cart
+  const handleAddToCart = (product) => {
+    setCartItems([...cartItems, product]); // Add the selected product to the cart
+    alert(`${product.name} added to cart!`);
+  };
+
+  // Component for displaying each product card
+  const ProductCard = ({ product }) => (
+    <Card style={{ width: '200px', margin: '10px' }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={product.image}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography variant="h6" component="div">
+          {product.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <b>₹{product.discountPrice}</b> <span style={{ textDecoration: 'line-through' }}>₹{product.price}</span>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.discount}
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginTop: '10px' }}
+          onClick={() => handleAddToCart(product)}
+        >
+          Add to Cart
+        </Button>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <div style={{ display: 'flex', margin: '20px' }}>
+      {/* Filter Sidebar */}
+      <div style={{ width: '20%', paddingRight: '20px', borderRight: '1px solid lightgray' }}>
+        {/* Category Dropdown */}
+        <h4 style={{ cursor: 'pointer', color: 'green' }} onClick={toggleCategory}>
+          Shop by Category
+        </h4>
+        <Collapse in={isCategoryOpen}>
+          <div style={{ paddingLeft: '10px' }}>
+            <p style={{ marginBottom: '10px' }}><b>Fruits & Vegetables</b></p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              <li style={{ paddingBottom: '10px' }}><b>Cuts & Sprouts</b></li>
+              <ul style={{ listStyleType: 'none', paddingLeft: '10px', paddingBottom: '10px' }}>
+                {Object.keys(productsByCategory).map((category) => (
+                  <li
+                    key={category}
+                    style={{ paddingBottom: '10px', cursor: 'pointer', color: selectedCategory === category ? 'green' : 'black' }}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+            </ul>
+          </div>
+        </Collapse>
+
+        {/* Product Rating Filter */}
+        <h4>Refined by</h4>
+        <h5>Product Rating</h5>
+        <FormGroup>
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <FormControlLabel
+              key={rating}
+              control={
+                <Checkbox
+                  value={rating}
+                  checked={ratings.includes(String(rating))}
+                  onChange={handleRatingChange}
+                />
+              }
+              label={
+                <span>
+                  {Array.from({ length: rating }, (_, i) => (
+                    <span key={i}>⭐</span>
+                  ))}
+                </span>
+              }
+            />
+          ))}
+        </FormGroup>
+
+        {/* Brand Filter */}
+        <h5>Brands</h5>
+        <FormGroup>
+          {['Ambrosia', 'bb Combo', 'Farmogo', 'Farm Fresh', 'Sprout Masters'].map((brand) => (
+            <FormControlLabel
+              key={brand}
+              control={
+                <Checkbox
+                  value={brand}
+                  checked={selectedBrands.includes(brand)}
+                  onChange={handleBrandChange}
+                />
+              }
+              label={brand}
+            />
+          ))}
+        </FormGroup>
+      </div>
+
+      {/* Product Grid */}
+      <div style={{ width: '80%', paddingLeft: '20px' }}>
+        <h3>{selectedCategory}</h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {productsByCategory[selectedCategory].map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Sprouts;
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import { Checkbox, FormControlLabel, FormGroup, Collapse, Card, CardMedia, CardContent, Typography, Button, IconButton } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
+import { useCart } from './CartContext'; //
+
+function Sprouts() {
+  const [ratings, setRatings] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
+  const [cartItems, setCartItems] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState('Cut Fruit, Tender Coconut');
+  const { addItemToCart } = useCart();
+  // Handle rating filter change
+  const handleRatingChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setRatings([...ratings, value]);
+    } else {
+      setRatings(ratings.filter((rating) => rating !== value));
+    }
+  };
+
+  // Handle brand filter change
+  const handleBrandChange = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedBrands([...selectedBrands, value]);
+    } else {
+      setSelectedBrands(selectedBrands.filter((brand) => brand !== value));
+    }
+  };
+
+  // Toggle Category Dropdown
+  const toggleCategory = () => {
+    setIsCategoryOpen(!isCategoryOpen);
+  };
+
+  // Sample data for products for each category
+  const productsByCategory = {
+    'Cut Fruit, Tender Coconut': [
+      {
+        id:'c301',
+        name: 'Sugar Palm Fruit',
+        price: 43,
+        discountPrice: 27,
+        image: 'https://media.istockphoto.com/id/1145647664/photo/palmyra-palm-toddy-palm-or-sugar-palm-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=0k_VGqmRrt7u_sW-U3a9ZQbaWmoJBFtwwT32PTeZXk4=',
+        discount: '25% OFF'
+      },
+      {
+        id:'c302',
+        name: 'Tender Coconut',
+        price: 70,
+        discountPrice: 50,
+        image: 'https://t4.ftcdn.net/jpg/02/26/28/13/360_F_226281364_GhAtxY8Q3ibW9vnKjdtarBEY2fDxXB6e.jpg',
+        discount: '25% OFF'
+      },
+      {
+        id:'c303',
+        name: 'Jackfruit - Peeled,250g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://img.freepik.com/premium-photo/peeled-jackfruit-white-plate-isolated-white-background_127755-1683.jpg',
+        discount: '15% OFF'
+
+      },
+      {
+        id:'c304',
+        name: 'Pomegranate - Peeled, 200 g',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://m.media-amazon.com/images/I/517oHZ30qrL.jpg',
+        discount: '30% OFF'
+
+      },
+      {
+        id:'c305',
+        name: 'Sugarcane - Diced, 200 g ',
+        price: 60,
+        discountPrice: 50,
+        image: 'https://www.bigbasket.com/media/uploads/p/xxl/40018977-2_1-fresho-sugarcane-diced.jpg',
+        discount: '30% OFF'
+
+      }
+    ],
+    'Cut & Peeled Veggies': [
+      {
+        id:'c306',
+        name: 'Garlic - Peeled, 200 g',
+        price: 80,
+        discountPrice: 70,
+        image: 'https://www.jiomart.com/images/product/original/rvfnqqqyas/momsy-premium-fresh-peeled-garlic-clove-250-grams-product-images-orvfnqqqyas-p603471100-1-202308012310.jpg?im=Resize=(420,420)',
+        discount: '12% OFF'
+      },
+      {
+        id:'c307',
+        name: ' Frozen Green Peas, 500 g Pouch',
+        price: 200,
+        discountPrice: 150,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40316895_1-home-fresh-frozen-green-peas.jpg',
+        discount: '25% OFF'
+      }
+    ],
+    'Fresh Juices & Milkshakes': [
+      {
+        id:'c308',
+        name: 'Mango Juice',
+        price: 150,
+        discountPrice: 120,
+        image: 'https://img.freepik.com/premium-photo/mango-milkshake-white-background_1111059-13088.jpg',
+        discount: '20% OFF'
+      },
+      {
+        id:'c309',
+        name: 'Strawberry Milkshake',
+        price: 180,
+        discountPrice: 160,
+        image: 'https://img.freepik.com/premium-photo/glass-strawberry-milkshake-isolated-white-background_185193-46813.jpg',
+        discount: '11% OFF'
+      }
+    ],
+    'Fresh Salads & Sprouts': [
+      {
+        id:'c310',
+        name: 'Organic Sprouts Moong Green, 150 g',
+        price: 100,
+        discountPrice: 80,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292145_3-fresho-organic-sprouts-moong-green.jpg',
+        discount: '20% OFF'
+      },
+      {
+        id:'c311',
+        name: 'Organic Sprouts Mixed Gram, 150 g',
+        price: 140,
+        discountPrice: 120,
+        image: 'https://www.bigbasket.com/media/uploads/p/l/40292148_3-fresho-organic-sprouts-mixed-gram.jpg',
+        discount: '15% OFF'
+      }
+    ],
+   
+    
+  };
+
+  // Handle add to cart
+  const handleAddToCart = (product) => {
+    setCartItems((prevItems) => ({
+        ...prevItems,
+        [product.id]: (prevItems[product.id] || 0) + 1, // Use product ID as the key
+    }));
+};
+
+  // Handle increment quantity
+  const handleIncrementQuantity = (product) => {
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [product.id]: prevItems[product.id] + 1,
+    }));
+  };
+
+  // Handle decrement quantity
+  const handleDecrementQuantity = (product) => {
+    setCartItems((prevItems) => {
+      const newQuantity = prevItems[product.id] - 1;
+      if (newQuantity > 0) {
+        return { ...prevItems, [product.id]: newQuantity };
+      } else {
+        const { [product.id]: _, ...rest } = prevItems; // Remove item from cart
+        return rest;
+      }
+    });
+  };
+// Sprouts.js
+
+const handleConfirmAddToCart = (product) => {
+  const itemDetails = {
+    name: product.name,
+    price: product.price,
+    discountPrice: product.discountPrice,
+    image: product.image, // Add the image property here
+    quantity: cartItems[product.id] || 1,
+    savedAmount: (product.price - product.discountPrice) * (cartItems[product.id] || 1),
+  };
+  addItemToCart(itemDetails);
+};
+
+  // Component for displaying each product card
+const ProductCard = ({ product }) => {
+  const quantity = cartItems[product.id] || 0;
+
+  return (
+    <Card style={{ width: '200px', margin: '10px' }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={product.image}
+        alt={product.name}
+      />
+      <CardContent>
+        <Typography variant="h6" component="div">
+          {product.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <b>₹{product.discountPrice}</b> <span style={{ textDecoration: 'line-through' }}>₹{product.price}</span>
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.discount}
+        </Typography>
+        {quantity > 0 ? (
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+            <IconButton onClick={() => handleDecrementQuantity(product)}>
+              <Remove />
+            </IconButton>
+            <Typography variant="body2" style={{ margin: '0 10px' }}>{quantity}</Typography>
+            <IconButton onClick={() => handleIncrementQuantity(product)}>
+              <Add />
+            </IconButton>
+            {quantity >= 1 && (
+              <Button
+              variant="contained"
+              color="secondary"
+              style={{ marginLeft: '10px' }}
+              onClick={() => handleConfirmAddToCart(product)}
+            >
+              Confirm
+            </Button>
+            
+            )}
+          </div>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: '10px' }}
+            onClick={() => handleAddToCart(product)}
+          >
+            Add to Cart
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+
+  return (
+    <div style={{ display: 'flex', margin: '20px' }}>
+      {/* Filter Sidebar */}
+      <div style={{ width: '20%', paddingRight: '20px', borderRight: '1px solid lightgray' }}>
+        {/* Category Dropdown */}
+        <h4 style={{ cursor: 'pointer', color: 'green' }} onClick={toggleCategory}>
+          Shop by Category
+        </h4>
+        <Collapse in={isCategoryOpen}>
+          <div style={{ paddingLeft: '10px' }}>
+            
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              <li style={{ paddingBottom: '10px' }}><b>Cuts & Sprouts</b></li>
+              <ul style={{ listStyleType: 'none', paddingLeft: '10px', paddingBottom: '10px' }}>
+                {Object.keys(productsByCategory).map((category) => (
+                  <li
+                    key={category}
+                    style={{ paddingBottom: '10px', cursor: 'pointer', color: selectedCategory === category ? 'green' : 'black' }}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+            </ul>
+          </div>
+        </Collapse>
+
+        {/* Product Rating Filter */}
+        <h4>Refined by</h4>
+        <h5>Product Rating</h5>
+        <FormGroup>
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <FormControlLabel
+              key={rating}
+              control={
+                <Checkbox
+                  value={rating}
+                  checked={ratings.includes(String(rating))}
+                  onChange={handleRatingChange}
+                />
+              }
+              label={
+                <span>
+                  {Array.from({ length: rating }, (_, i) => (
+                    <span key={i}>⭐</span>
+                  ))}
+                </span>
+              }
+            />
+          ))}
+        </FormGroup>
+
+        {/* Brand Filter */}
+        <h5>Brands</h5>
+        <FormGroup>
+          {['Ambrosia', 'bb Combo', 'Farmogo', 'Farm Fresh', 'Sprout Masters'].map((brand) => (
+            <FormControlLabel
+              key={brand}
+              control={
+                <Checkbox
+                  value={brand}
+                  checked={selectedBrands.includes(brand)}
+                  onChange={handleBrandChange}
+                />
+              }
+              label={brand}
+            />
+          ))}
+        </FormGroup>
+      </div>
+
+      {/* Product Grid */}
+      <div style={{ width: '80%', paddingLeft: '20px' }}>
+        <h3>{selectedCategory}</h3>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {productsByCategory[selectedCategory].map((product) => (
+  <ProductCard key={product.id} product={product} />
+))}
+
+          
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Sprouts;
+
+
+
+
+ const backgroundImages = [
+    'https://fnsharp.com/cdn/shop/articles/fnsharp-fruit-cutting-guide_5000x.jpg?v=1623264689',
+    'https://t4.ftcdn.net/jpg/07/08/68/31/360_F_708683198_K08AiNpIoqShD4munMhkRnL25q7g0lpg.jpg',
+    'https://www.en.krishakjagat.org/wp-content/uploads/2023/10/sugarcane-1.jpg',
+  ];
+{/* Align the "My Fruits" heading to the right */}
+      <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '50px' }}>
+        <h1>Hydration</h1>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
+        {sproutsdata.map((product) => (
+          <div
+            key={product.id} // Use product.id as the key
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              width: '280px',
+              position: 'relative',
+              margin: '10px', // Added margin to create space between cards and edges
+            }}
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{
+                width: '200px',
+                height: '180px',
+                paddingLeft: '30px',
+                objectFit: 'cover',
+              }}
+            />
+            <div style={{ paddingLeft: '20px' }}>
+              <h3>{product.name}</h3>
+              <p style={{ textDecoration: 'line-through' }}>{`₹ ${product.price}`}</p>
+              <p style={{ color: 'green' }}>{`₹ ${product.discountPrice} (${product.discount})`}</p>
+              <p style={{ color: 'red' }}>{`You save: ₹ ${calculateSavedAmount(product)}`}</p>
+            </div>
+            {showButtons[product.id] ? (
+              <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
+                <IconButton onClick={() => handleDecreaseQuantity(product.id)}>
+                  <RemoveIcon />
+                </IconButton>
+                <span style={{ margin: '0 10px' }}>
+                  {quantities[product.id] || 0}
+                </span>
+                <IconButton onClick={() => handleIncreaseQuantity(product.id)}>
+                  <AddIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleAddToCart(product)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Confirm
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleShow(product)}
+                style={{ marginTop: '10px', width: '100%' }}
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+
+
+// src/components/Fruits.js
+
+import React, { useState } from 'react';
+import { Button, IconButton, Box, Snackbar, SnackbarContent } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'; // Import CheckCircleIcon
+import { useCart } from './CartContext'; // Import the cart context
+import Apphead from './Apphead';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; 
+import { useNavigate } from 'react-router-dom';
+const sproutsdata = 
+   [
+    {
+      name: 'Sugar Palm Fruit',
+      price: 43,
+      discountPrice: 27,
+      image: 'https://media.istockphoto.com/id/1145647664/photo/palmyra-palm-toddy-palm-or-sugar-palm-fruit-isolated-on-white.jpg?s=612x612&w=0&k=20&c=0k_VGqmRrt7u_sW-U3a9ZQbaWmoJBFtwwT32PTeZXk4=',
+      discount: '25% OFF'
+    },
+    {
+      name: 'Tender Coconut',
+      price: 70,
+      discountPrice: 50,
+      image: 'https://t4.ftcdn.net/jpg/02/26/28/13/360_F_226281364_GhAtxY8Q3ibW9vnKjdtarBEY2fDxXB6e.jpg',
+      discount: '25% OFF'
+    },
+    {
+      name: 'Jackfruit - Peeled,250g',
+      price: 60,
+      discountPrice: 50,
+      image: 'https://img.freepik.com/premium-photo/peeled-jackfruit-white-plate-isolated-white-background_127755-1683.jpg',
+      discount: '15% OFF'
+
+    },
+    {
+      name: 'Pomegranate - Peeled, 200 g',
+      price: 60,
+      discountPrice: 50,
+      image: 'https://m.media-amazon.com/images/I/517oHZ30qrL.jpg',
+      discount: '30% OFF'
+
+    },
+    {
+      name: 'Sugarcane - Diced, 200 g ',
+      price: 60,
+      discountPrice: 50,
+      image: 'https://www.bigbasket.com/media/uploads/p/xxl/40018977-2_1-fresho-sugarcane-diced.jpg',
+      discount: '30% OFF'
+
+    }
+  ]
+
+
+function Sprouts() {
+  const [quantities, setQuantities] = useState({});
+  const [showButtons, setShowButtons] = useState({});
+  const [snackbarOpen, setSnackbarOpen] = useState(false); // State for Snackbar
+  const [snackbarMessage, setSnackbarMessage] = useState(''); // Message to display
+  const { addItemToCart } = useCart();
+  const navigate = useNavigate(); 
+
+  const handleShow = (product) => {
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.id]: true, // Use product.id instead of product.name
+    }));
+  };
+
+  const handleAddToCart = (product) => {
+    const quantity = quantities[product.id] || 1;
+    addItemToCart({ ...product, quantity });
+    setSnackbarMessage(`${product.name} has been added to the cart!`); // Set the snackbar message
+    setSnackbarOpen(true); // Open the snackbar
+    setShowButtons((prev) => ({
+      ...prev,
+      [product.id]: false,
+    }));
+    setQuantities((prev) => ({
+      ...prev,
+      [product.id]: 0,
+    }));
+  };
+
+  const handleIncreaseQuantity = (productId) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1,
+    }));
+  };
+
+  const handleDecreaseQuantity = (productId) => {
+    setQuantities((prev) => {
+      const currentQuantity = prev[productId] || 0;
+      if (currentQuantity > 1) {
+        return { ...prev, [productId]: currentQuantity - 1 };
+      } else {
+        const newQuantities = { ...prev };
+        delete newQuantities[productId];
+        return newQuantities;
+      }
+    });
+  };
+
+  const calculateSavedAmount = (product) => {
+    return product.price - product.discountPrice;
+  };
+
+  // Close the Snackbar when the user clicks the close button
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  return (
+    <div>
+      <Apphead />
+      <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
+        <IconButton onClick={() => navigate('/')} color="inherit">
+          <ArrowBackIcon />
+        </IconButton>
+       
+        </div>
+      
+        <Box style={styles.con}>
+          <h1
+            style={{
+              color: 'white',
+              paddingLeft: '30px',
+              textShadow: '3px 3px 4px black',
+              fontFamily: 'Hobo Std',
+              alignSelf: 'flex-start', // Align the text to the left
+              marginTop: '5px', // Ensure it stays at the top
+            }}
+          >
+          Nature's hydrating treasure!
+          </h1>
+        </Box>
+      
+      
+      {/* Align the "My Fruits" heading to the right */}
+      <div style={{ display: 'flex', justifyContent: 'flex-start', paddingLeft: '50px' }}>
+        <h1>Hydration</h1>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '20px' }}>
+        {sproutsdata.map((product) => (
+          <div
+            key={product.id} // Use product.id as the key
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px',
+              width: '280px',
+              position: 'relative',
+              margin: '10px', // Added margin to create space between cards and edges
+            }}
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{
+                width: '200px',
+                height: '180px',
+                paddingLeft: '30px',
+                objectFit: 'cover',
+              }}
+            />
+            <div style={{ paddingLeft: '20px' }}>
+              <h3>{product.name}</h3>
+              <p style={{ textDecoration: 'line-through' }}>{`₹ ${product.price}`}</p>
+              <p style={{ color: 'green' }}>{`₹ ${product.discountPrice} (${product.discount})`}</p>
+              <p style={{ color: 'red' }}>{`You save: ₹ ${calculateSavedAmount(product)}`}</p>
+            </div>
+            {showButtons[product.id] ? (
+              <div style={{ display: 'flex', alignItems: 'center', padding: '10px' }}>
+                <IconButton onClick={() => handleDecreaseQuantity(product.id)}>
+                  <RemoveIcon />
+                </IconButton>
+                <span style={{ margin: '0 10px' }}>
+                  {quantities[product.id] || 0}
+                </span>
+                <IconButton onClick={() => handleIncreaseQuantity(product.id)}>
+                  <AddIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleAddToCart(product)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Confirm
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleShow(product)}
+                style={{ marginTop: '10px', width: '100%' }}
+              >
+                Add to Cart
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Snackbar for item added notification */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000} // Hide after 3 seconds
+        onClose={handleCloseSnackbar}
+      >
+        <SnackbarContent
+          style={{ backgroundColor: 'green' }} // Set Snackbar background color to green
+          message={
+            <span style={{ display: 'flex', alignItems: 'center', color: 'white' }}>
+              <CheckCircleIcon style={{ marginRight: '8px', color: 'white' }} /> {/* Add CheckCircleIcon */}
+              {snackbarMessage}
+            </span>
+          }
+          action={
+            <Button color="inherit" onClick={handleCloseSnackbar}>
+              Close
+            </Button>
+          }
+        />
+      </Snackbar>
+    </div>
+  );
+}
+
+const styles = {
+  con: {
+    backgroundColor: 'lightblue',
+    color: 'black',
+    borderRadius: '8px',
+    height: '350px',
+    width: '1300px',
+    display: 'flex',
+    flexDirection: 'column', // Column layout to position the text at the top
+    justifyContent: 'flex-start', // Align text to the top
+    alignItems: 'flex-start', // Align text to the left
+    padding: '20px', // Adds space inside the box
+    backgroundImage: 'url("https://fnsharp.com/cdn/shop/articles/fnsharp-fruit-cutting-guide_5000x.jpg?v=1623264689")', // Replace with your image URL
+    backgroundSize: 'cover', // Cover the entire box with the background
+    backgroundPosition: 'center', // Center the image
+    backgroundRepeat: 'no-repeat', // Ensure the image doesn't repeat
+    marginLeft: '110px',
+    margin: '59px', // Center the box horizontally
+  },
+};
+
+export default Sprouts;
+three background image slides for every 5 seconds and three circles should indicate that
+

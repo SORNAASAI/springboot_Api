@@ -1,0 +1,97 @@
+index.html]
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login credentials</title>
+</head>
+<body>
+	<form action="verify" method="post">
+		<h1>LOGIN PAGE</h1><BR>
+		<LABEL>ENTER USER NAME:</LABEL><input TYPE="text" name="username"></input><br>
+		<LABEL>ENTER Password:</LABEL><input TYPE="text" name="password"></input><br>
+		<input TYPE="submit" name="password"></input>
+	</form>
+</body>
+</html>
+[Java file]
+Package jsptraining;
+import java.io.IOException;
+import jakarta.servlet.http.*;
+public class verifyservlet extends HttpServlet {
+	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException{
+		String username=req.getParameter("username");
+		String password=req.getParameter("password");
+		
+		if(username.equals("Harish") && password.equals("neotrainer"))
+			res.getWriter().println("welcome");
+		else
+			res.getWriter().println("<h1>Incorrect username and password</h1>");
+	}
+}
+
+[Xml file]
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>JSP_PROJECT2</display-name>
+  <servlet>
+  <servlet-name>HARISH</servlet-name>
+  <servlet-class>jsptraining.verifyservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>HARISH</servlet-name>
+  <url-pattern>/verify</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+
+
+index.html]
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="add">
+Enter number 1:<input type="text" name="num1"><br>
+Enter number 2:<input type="text" name="num2"><br>
+<input type="submit" name="submit">
+</form>
+</body>
+</html>
+
+[Java file]
+package JSP;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class Add extends HttpServlet{
+	public void service(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		int a=Integer.parseInt(req.getParameter("num1"));
+		int b=Integer.parseInt(req.getParameter("num2"));
+		int result=a+b;
+		
+		PrintWriter out=res.getWriter();
+		out.println("Your result is :"+result);
+	}
+} 
+[Xml file]
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+  <display-name>JSP_PROJECT</display-name>
+  <servlet>
+  <servlet-name>add</servlet-name>
+  <servlet-class>JSP.Add</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>add</servlet-name>
+  <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+</web-app>

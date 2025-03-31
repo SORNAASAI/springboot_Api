@@ -1,0 +1,18 @@
+.row
+{
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    display:grid;
+    border-top:4px solid grey;
+    border-right:4px solid gray;
+    border-left:4px solid gray;
+    height:400px;
+    width:400px;
+}
+.black{
+    background-color: black;
+    height:50px;
+}
+.white{
+    background-color: white;
+    height:50px;
+}

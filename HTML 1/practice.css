@@ -1,0 +1,42 @@
+.grid
+{
+    grid-template-columns:auto auto auto auto auto auto auto auto;
+    display:grid;
+    width:400px;
+    height:400px;
+    
+}
+.cell
+{
+    border-bottom:2px solid black;
+    border-right:2px solid black;
+}
+.odd
+{
+    background-color: white;
+    color:black;
+    font-size: xx-large;
+    text-align: center;
+    height:50px;
+}
+.even{
+    background-color:blue;
+    color:black;
+    font-size:xx-large;
+    text-align: center;
+    height:50px;
+
+}
+.cell2
+{
+border-bottom:2px solid black;
+
+}
+.cell1
+{
+    border-right:2px solid black;
+}
+.g{
+    background-color: grey;
+    padding:500px;
+}

@@ -1,0 +1,17 @@
+<html>
+    <head>
+<title>JS</title>
+<script>
+    function change()
+    {
+    document.getElementById('para').innerHTML='JS stands for JavaScript';
+    document.getElementById('heading').innerHTML='JS';
+    }
+    </script>
+    </head>
+    <body>
+        <h1 id="heading">HTML AND CSS</h1>
+        <p id="para">HTML stands for HYPER TEXT MARKUP LANGUAGE.
+            CSS stands for CASCADING STYLE SHEET.</p>
+    
+        <button type="button" onclick="change()">next</button> </body></html>

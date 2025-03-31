@@ -1,0 +1,47 @@
+Basic Colors:
+White: #FFFFFF
+Black: #000000
+Gray: #808080
+Red: #FF0000
+Blue: #0000FF
+Green: #008000
+Yellow: #FFFF00
+Cyan: #00FFFF
+Magenta: #FF00FF
+Pastel Colors:
+Lavender: #E6E6FA
+Light Pink: #FFB6C1
+Light Blue: #ADD8E6
+Pale Green: #98FB98
+Peach Puff: #FFDAB9
+Light Coral: #F08080
+Misty Rose: #FFE4E1
+Pale Goldenrod: #EEE8AA
+Warm Colors:
+Orange: #FFA500
+Tomato: #FF6347
+Coral: #FF7F50
+Dark Orange: #FF8C00
+Gold: #FFD700
+Crimson: #DC143C
+Salmon: #FA8072
+Firebrick: #B22222
+Cool Colors:
+Deep Sky Blue: #00BFFF
+Teal: #008080
+Indigo: #4B0082
+Slate Blue: #6A5ACD
+Medium Sea Green: #3CB371
+Turquoise: #40E0D0
+Steel Blue: #4682B4
+Royal Blue: #4169E1
+Earth Tones:
+Saddle Brown: #8B4513
+Olive Drab: #6B8E23
+Forest Green: #228B22
+Peru: #CD853F
+Rosy Brown: #BC8F8F
+Sienna: #A0522D
+Dark Olive Green: #556B2F
+Chocolate: #D2691E
+9 2

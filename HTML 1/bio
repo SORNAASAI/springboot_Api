@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fav Food</title>
+    <link rel="stylesheet" href="biodata.css">
+</head>
+<body>
+<div class="grid">
+    <div class="name">
+        <p id="para">Name</p>
+        <nav class="navi">
+            <a href="#home">Home</a>
+            <a href="#aboutme">About me</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+    <div id="home">
+                <span class="d1">Practice Makes Perfect</span><br>
+                <span class="d2">Perfect Practice Makes Perfect</span>
+    </div>
+    <div id="aboutme">
+                <h1>Name</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, maxime similique! Dolorum quasi quo ipsum adipisci nam obcaecati natus doloribus at dolore! Dolorem labore quasi nobis tempora hic ad fuga.</p>
+    </div>
+    <div id="achievements">
+                <h4 id="ac">Achievements</h4>
+
+                <p class="pro">Some of my best projects so far </p>
+        <div class="lorem"> 
+                <div class="cell">
+                <div class="cricket">
+                    <h4>School Cricket Team Captain</h4>
+                    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, quisquam.</p>
+                </div></div>
+                <div class="cell">
+                <div class="first">
+                    <h4>School First</h4>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore, quibusdam?</p>
+                </div></div>
+                <div class="cell">
+                <div class="Youtuber">
+                    <h4>YouTuber</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, cum!</p>
+                </div></div>
+        </div>
+    </div>
+                  
+    <div id="skills">
+                <h4 id="sk">Skills</h4>
+
+            <div class="data1">
+                <div class="tech">
+                    <h5 id="te">TECHNICAL SKILLS</h5>
+                    <p>HTML</p>
+                    <progress max="100"value="60"></progress>
+                    <p>CSS</p>
+                   <progress max="100"value="70"></progress>
+                   <p>JAVA SCRIFT</p>
+                   <progress max="100"value="80"></progress>
+                   <p>C++</p>
+                   <progress max="100"value="90"></progress>
+                   <p>JAVA</p>
+                   <progress max="100"value="40"></progress>
+                </div>
+                <div class="lang">
+                    <h5 id="la"> Language Skills</h5>
+                    <p>English</p>
+                    <progress max="100"value="90"></progress>
+                    <p>Tamil</p>
+                    <progress max="100"value="98"></progress>
+                    <p>Hindi</p>
+                    <progress max="100" value="60"></progress>
+                    <p>Telugu</p>
+                    <progress max="100"value="40"></progress>
+                    <p>Malayalam</p>
+                    <progress max="100"value="30"></progress>
+                </div>
+    </div>
+            
+    <div id="contact">
+            
+                <h4>Contact</h4>
+                    <input type="text" placeholder="ENTER YOUR NAME"/><br><br>
+                    <input type="text" placeholder="ENTER YOUR EMAIL"/><br><br>
+                    <input type="text" placeholder ="ENTER YOUR MESSAGE"/><br><br>
+                    <input type="text" placeholder="SEND MESSAGE"/> 
+    </div>
+</div>
+
+
+</body>
+</html>

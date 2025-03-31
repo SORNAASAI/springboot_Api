@@ -1,0 +1,359 @@
+import React, { createContext, useContext, useState } from 'react';
+
+// Create a context for the cart
+const CartContext = createContext();
+
+// Custom hook to use the cart context
+export const useCart = () => useContext(CartContext);
+
+// Provider component to wrap around your app
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  // Function to add an item to the cart
+  const addItemToCart = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((i) => i.name === item.name);
+      if (existingItem) {
+        return prevItems.map((i) =>
+          i.name === item.name
+            ? { ...i, quantity: i.quantity + 1 }
+            : i
+        );
+      } else {
+        return [...prevItems, { ...item, quantity: 1 }];
+      }
+    });
+  };
+
+  // Function to remove an item from the cart
+  const removeItemFromCart = (item) => {
+    setCartItems((prevItems) =>
+      prevItems
+        .map((i) =>
+          i.name === item.name ? { ...i, quantity: i.quantity - 1 } : i
+        )
+        .filter((i) => i.quantity > 0)
+    );
+  };
+
+  return (
+    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+// CardContext.js
+import React, { createContext, useContext, useState } from 'react';
+
+const CartContext = createContext();
+
+export const useCart = () => {
+  return useContext(CartContext);
+};
+
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addItemToCart = (item) => {
+    // Add an item to the cart and ensure it includes name and image
+    const newItem = {
+      ...item,
+      name: item.name || 'Default Product Name', // Ensure name exists
+      image: item.image || 'default-image-url',  // Ensure image exists
+      size: item.size || 'Default Size',
+      price: item.price || 0,
+      originalPrice: item.originalPrice || item.price, // Optional: use price if no original price
+      quantity: item.quantity || 1,
+    };
+
+    // Check if the item already exists in the cart
+    const existingItemIndex = cartItems.findIndex(cartItem => cartItem.size === newItem.size);
+
+    if (existingItemIndex > -1) {
+      // If it exists, update the quantity
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].quantity += newItem.quantity;
+      setCartItems(updatedCartItems);
+    } else {
+      // Otherwise, add it to the cart
+      setCartItems([...cartItems, newItem]);
+    }
+  };
+
+  const removeItemFromCart = (itemToRemove) => {
+    setCartItems(cartItems.filter(item => item.size !== itemToRemove.size));
+  };
+
+  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
+  return (
+    <CartContext.Provider value={{ cartItems, addItemToCart, removeItemFromCart, cartItemCount }}>
+      {children}
+    </CartContext.Provider>
+  );
+}
+combine the both CardContext.js and CartContext
+
+
+
+
+crt// CartContext.js
+import React, { createContext, useContext, useState } from 'react';
+
+const CartContext = createContext();
+
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  // Adds an item to the cart or updates its quantity if it already exists
+  const addItemToCart = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (cartItem) => cartItem.name === item.name
+      );
+
+      if (existingItem) {
+        return prevItems.map((cartItem) =>
+          cartItem.name === item.name
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      } else {
+        return [...prevItems, item];
+      }
+    });
+  };
+
+  // Removes an entire item from the cart based on its name
+  const removeItemFromCart = (itemName) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.name !== itemName)
+    );
+  };
+
+  // Updates the quantity of a specific item in the cart
+  const updateItemQuantity = (itemName, quantity) => {
+    setCartItems((prevItems) =>
+      prevItems.map((cartItem) =>
+        cartItem.name === itemName
+          ? { ...cartItem, quantity: quantity }
+          : cartItem
+      )
+    );
+  };
+
+  // Clears the entire cart
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  // Calculates the total price of the cart
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.discountPrice * item.quantity,
+    0
+  );
+
+  // Calculates the total savings from discounts
+  const totalSavings = cartItems.reduce(
+    (total, item) => total + (item.price - item.discountPrice) * item.quantity,
+    0
+  );
+
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addItemToCart,
+        removeItemFromCart,
+        updateItemQuantity,
+        clearCart,
+        totalPrice,
+        totalSavings,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+// Custom hook to access the CartContext
+export const useCart = () => {
+  return useContext(CartContext);
+};
+crt
+// CartContext.js
+import React, { createContext, useContext, useState } from 'react';
+
+// Create a new context
+const CartContext = createContext();
+
+// CartProvider component to wrap around the app
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  // Adds an item to the cart or updates its quantity if it already exists
+  const addItemToCart = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (cartItem) => cartItem.name === item.name
+      );
+
+      if (existingItem) {
+        // Update the quantity of the existing item
+        return prevItems.map((cartItem) =>
+          cartItem.name === item.name
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      } else {
+        // Add a new item to the cart
+        return [...prevItems, item];
+      }
+    });
+  };
+
+  // Removes an entire item from the cart based on its name
+  const removeItemFromCart = (itemName) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.name !== itemName)
+    );
+  };
+
+  // Updates the quantity of a specific item in the cart
+  const updateItemQuantity = (itemName, quantity) => {
+    setCartItems((prevItems) =>
+      prevItems.map((cartItem) =>
+        cartItem.name === itemName
+          ? { ...cartItem, quantity: quantity }
+          : cartItem
+      )
+    );
+  };
+
+  // Clears the entire cart
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  // Calculates the total price of the cart
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.discountPrice * item.quantity,
+    0
+  );
+
+  // Calculates the total savings from discounts
+  const totalSavings = cartItems.reduce(
+    (total, item) => total + (item.price - item.discountPrice) * item.quantity,
+    0
+  );
+
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addItemToCart,
+        removeItemFromCart,
+        updateItemQuantity,
+        clearCart,
+        totalPrice,
+        totalSavings,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+// Custom hook to access the CartContext
+export const useCart = () => {
+  return useContext(CartContext);
+};
+
+
+
+// src/components/CartContext.js
+import React, { createContext, useContext, useState, useMemo } from 'react';
+
+// Create the context
+const CartContext = createContext();
+
+// Custom hook to use the CartContext
+export const useCart = () => useContext(CartContext);
+
+// CartProvider component to wrap around parts of the app that need access to the cart
+export const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  // Adds an item to the cart or updates its quantity if it already exists
+  const addItemToCart = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((cartItem) => cartItem.id === item.id);
+
+      if (existingItem) {
+        // Update the quantity of the existing item
+        return prevItems.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      } else {
+        // Add a new item to the cart
+        return [...prevItems, item];
+      }
+    });
+  };
+
+  // Removes an entire item from the cart based on its ID
+  const removeItemFromCart = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.id !== id)
+    );
+  };
+
+  // Updates the quantity of a specific item in the cart
+  const updateItemQuantity = (id, quantity) => {
+    setCartItems((prevItems) =>
+      prevItems.map((cartItem) =>
+        cartItem.id === id ? { ...cartItem, quantity } : cartItem
+      )
+    );
+  };
+
+  // Clears the entire cart
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
+  // Calculates the total price of the cart
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce(
+      (total, item) => total + (item.discountPrice || 0) * (item.quantity || 1),
+      0
+    );
+  }, [cartItems]);
+
+  // Calculates the total savings from discounts
+  const totalSavings = useMemo(() => {
+    return cartItems.reduce(
+      (total, item) => total + ((item.price || 0) - (item.discountPrice || 0)) * (item.quantity || 1),
+      0
+    );
+  }, [cartItems]);
+
+  return (
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addItemToCart,
+        removeItemFromCart,
+        updateItemQuantity,
+        clearCart,
+        totalPrice,
+        totalSavings,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};

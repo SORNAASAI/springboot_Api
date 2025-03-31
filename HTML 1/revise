@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        </head>
+        <body>
+            <h1>1)</h1>
+            <form>
+                <label>name:</label>
+                <input type="text"><br><br>
+                <label >password:</label>
+                <input type="password"><br><br>
+                <label >email:</label>
+                <input type="email"><br><br>
+                <label >search:</label>
+                <input type="search"><br><br>
+                <label>number:</label>
+                <input type="number">
+            </form>
+        </body>
+        </html>
+        <html>
+            <head>
+
+            </head>
+            <body>
+                <h1>2)</h1>
+                <label>Username:</label>
+                <input type="text"><br><br>
+                <label>Password:</label>
+                <input type="password"><br><br>
+                <button type="submit">Login</button> 
+            </body>
+        </html>
+        <h1>13)</h1>
+        <html>
+            <head>
+                
+            </head>
+            <body>
+                <table border="">
+                    <tr>
+                        <th>name</th>
+                        <th>email</th>
+                    </tr>
+                    <tr>
+                        <td>sornaa</td>
+                        <td>sornaarajalakshmi@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>sai</td>
+                        <td>saisundaram@gamil.com</td>
+                    </tr>
+                </table>
+            </body>
+        </html>
+        <html>
+            

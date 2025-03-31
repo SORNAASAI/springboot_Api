@@ -1,0 +1,39 @@
+.product-category
+            {
+                display:inline;
+            }
+            #store-header
+            {
+                background-color:lightgray;
+            }
+            main{
+                display:flex;
+            }
+            .product{
+                width:150px;
+                border:2px;
+                border-style:groove;
+                padding:50px;
+                margin-right:50px;
+            }
+            .special-offer
+            {
+                width:150px;
+                border:2px;
+                padding:50px;
+                background-color:yellow;
+                border-style:solid;
+                border-color:darkorange;
+            
+            }
+            footer{
+                text-align:center;
+                margin-top:1px;
+            
+            }
+            p
+            {
+                color:blue;
+            }
+            
+            

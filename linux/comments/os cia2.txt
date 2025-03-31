@@ -1,0 +1,1 @@
+Load time is the phase when the operating system loads a program from storage (like a disk) into memory.Run time is the phase when the program is actively executing instructions on the CPU. During this time:

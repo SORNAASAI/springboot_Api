@@ -1,0 +1,32 @@
+
+h1.header
+{
+   text-align:center;
+   font-family:'Times New Roman', Times, serif;
+   text-decoration-line:underline;
+   color:black;
+    text-transform:uppercase;
+    margin-bottom:50px;
+    letter-spacing: 1px;
+}
+p.text
+{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:light grey;
+    font-size:x-small;
+    line-height:normal;
+}
+p.highlight
+{
+    background-color:yellow;
+    font-weight:bold;
+    width:200px;
+}
+p.italic
+{
+    font-style:italic;
+}
+p.underline
+{
+    text-decoration-line: underline;
+}

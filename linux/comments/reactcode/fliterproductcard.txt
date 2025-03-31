@@ -1,0 +1,94 @@
+// src/components/Cart.js
+import React from 'react';
+import { useCart } from './CartContext';
+import { Button, IconButton } from '@mui/material';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+
+function Fliterproductcard() {
+  const {
+    cartItems,
+    removeItemFromCart,
+    updateItemQuantity,
+    clearCart,
+    totalPrice,
+    totalSavings,
+  } = useCart();
+
+  const handleIncrease = (item) => {
+    updateItemQuantity(item.name, item.quantity + 1);
+  };
+
+  const handleDecrease = (item) => {
+    if (item.quantity > 1) {
+      updateItemQuantity(item.name, item.quantity - 1);
+    } else {
+      removeItemFromCart(item.name);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h2>Your Cart</h2>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <>
+          {cartItems.map((item) => (
+            <div
+              key={item.name}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: '10px',
+                borderBottom: '1px solid #ccc',
+                paddingBottom: '10px',
+              }}
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                style={{ width: '100px', height: '90px', objectFit: 'cover', marginRight: '20px' }}
+              />
+              <div style={{ flex: 1 }}>
+                <h3>{item.name}</h3>
+                <p>
+                  Price: ₹{item.discountPrice} x {item.quantity} = ₹{item.discountPrice * item.quantity}
+                </p>
+                <p style={{ color: 'green' }}>
+                  You Save: ₹{(item.price - item.discountPrice) * item.quantity}
+                </p>
+              </div>
+              <div>
+                <IconButton onClick={() => handleDecrease(item)}>
+                  <RemoveIcon />
+                </IconButton>
+                <span>{item.quantity}</span>
+                <IconButton onClick={() => handleIncrease(item)}>
+                  <AddIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => removeItemFromCart(item.name)}
+                  style={{ marginLeft: '10px' }}
+                >
+                  Remove
+                </Button>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: '20px' }}>
+            <h3>Total Price: ₹{totalPrice}</h3>
+            <h4>Total Savings: ₹{totalSavings}</h4>
+            <Button variant="contained" color="primary" onClick={clearCart}>
+              Clear Cart
+            </Button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default Fliterproductcard;
